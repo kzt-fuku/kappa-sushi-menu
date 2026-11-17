@@ -1,0 +1,242 @@
+:root {
+  --accent: #b3122a;
+  --accent-soft: #fbe9ec;
+  --text: #1d1d1f;
+  --muted: #6b6b70;
+  --line: #e3e3e6;
+  --bg: #ffffff;
+  --bg-sub: #f6f6f7;
+
+  /* 行のレイアウト: 順位｜品名｜税込価格（価格欄は固定幅で右揃え） */
+  --rank-width: 3.1em;
+  --price-width: 4.8em;
+  --row-gap: 0.6em;
+  --page-padding: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- ヘッダー ---------- */
+.page-header {
+  padding: calc(14px + env(safe-area-inset-top)) var(--page-padding) 12px;
+  border-bottom: 4px solid var(--accent);
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.lead {
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.facts {
+  margin: 0 0 12px;
+  padding-left: 1.1em;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.facts strong {
+  color: var(--text);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---------- ジャンル切り替え（上部に固定、折り返してすべて表示） ---------- */
+.genre-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 8px var(--page-padding);
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.genre-button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #c9c9ce;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.genre-button[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ---------- 一覧 ---------- */
+main {
+  padding: 0 var(--page-padding);
+}
+
+.status {
+  margin: 10px 0 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.status.is-error {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.table-head,
+.menu-row {
+  display: grid;
+  grid-template-columns: var(--rank-width) minmax(0, 1fr) var(--price-width);
+  column-gap: var(--row-gap);
+  align-items: baseline;
+}
+
+.table-head {
+  padding: 4px 0;
+  border-bottom: 2px solid var(--text);
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.menu-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-row {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.menu-row:nth-child(even) {
+  background: var(--bg-sub);
+}
+
+.rank {
+  padding-left: 4px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.name-cell {
+  min-width: 0;
+}
+
+.name {
+  display: block;
+  font-weight: 600;
+}
+
+.quantity,
+.note {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.reason {
+  display: inline-block;
+  margin-top: 2px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.price,
+.price-col {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.price {
+  padding-right: 4px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.price-col {
+  padding-right: 4px;
+}
+
+.is-unpriced .price {
+  color: var(--muted);
+}
+
+/* ---------- フッター ---------- */
+.page-footer {
+  padding: 16px var(--page-padding) calc(24px + env(safe-area-inset-bottom));
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.page-footer p {
+  margin: 0;
+}

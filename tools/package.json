@@ -1,0 +1,15 @@
+{
+  "name": "kappa-sushi-menu-tools",
+  "private": true,
+  "type": "module",
+  "description": "印刷用 PDF の生成と表示確認（公開サイトには含めない）",
+  "scripts": {
+    "fonts": "node fetch-fonts.mjs",
+    "pdf": "node build-pdf.mjs",
+    "check": "node check-layout.mjs",
+    "check:live": "node check-layout.mjs https://kzt-fuku.github.io/kappa-sushi-menu/"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.17.0"
+  }
+}

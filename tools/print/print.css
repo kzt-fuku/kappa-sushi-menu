@@ -1,0 +1,203 @@
+/* PDF に埋め込む日本語フォント（SIL Open Font License） */
+@font-face {
+  font-family: "Noto Sans JP Print";
+  src: url("../fonts/NotoSansJP-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Noto Sans JP Print";
+  src: url("../fonts/NotoSansJP-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+:root {
+  --page-margin-x: 9mm;
+  --page-margin-y: 8mm;
+  --column-gap: 6mm;
+  --rank-width: 2.9em;
+  --price-width: 4.6em;
+  --line: #b9b9b9;
+  --line-strong: #000;
+  --muted: #555;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans JP Print", sans-serif;
+  font-size: 8.4pt;
+  line-height: 1.3;
+  color: #000;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 210mm;
+  height: 297mm;
+  padding: var(--page-margin-y) var(--page-margin-x);
+  overflow: hidden;
+  break-after: page;
+}
+
+.page:last-child {
+  break-after: auto;
+}
+
+/* ---------- 見出し ---------- */
+.page-title {
+  flex: none;
+  padding-bottom: 2mm;
+  margin-bottom: 2mm;
+  border-bottom: 1.2pt solid var(--line-strong);
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4mm;
+}
+
+h1 {
+  margin: 0;
+  font-size: 15pt;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.page-title-compact h1 {
+  font-size: 10.5pt;
+}
+
+.checked {
+  margin: 0;
+  font-size: 8.4pt;
+  white-space: nowrap;
+}
+
+.summary {
+  margin: 1.2mm 0 0;
+  font-size: 7.6pt;
+  color: #222;
+}
+
+/* ---------- 2 段組 ---------- */
+/* 一覧部分の文字サイズは print.js が 4 段に収まる最大値に設定する */
+.columns {
+  font-size: var(--list-font-size, 8.4pt);
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--column-gap);
+}
+
+.col {
+  min-height: 0;
+  overflow: hidden;
+  border-top: none;
+}
+
+.col-head,
+.row {
+  display: grid;
+  grid-template-columns: var(--rank-width) minmax(0, 1fr) var(--price-width);
+  column-gap: 1.5mm;
+  align-items: baseline;
+}
+
+.col-head {
+  padding: 0.25em 0.4em;
+  border-bottom: 0.8pt solid var(--line-strong);
+  font-weight: 700;
+}
+
+/* 段見出しの列幅（em）を行と揃えるため、文字サイズは子要素で小さくする */
+.col-head > span {
+  font-size: 0.8em;
+}
+
+.row {
+  padding: 0.3em 0.4em;
+  border-bottom: 0.4pt solid var(--line);
+}
+
+.row:nth-child(odd of .row) {
+  background: #f1f1f1;
+}
+
+.rank {
+  font-size: 0.9em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.name-cell {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.quantity {
+  margin-left: 0.5em;
+  font-size: 0.78em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.reason,
+.note {
+  display: block;
+  font-size: 0.78em;
+  line-height: 1.25;
+  color: var(--muted);
+}
+
+.reason {
+  font-weight: 700;
+  color: #000;
+}
+
+.price,
+.price-head {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.price {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---------- フッター ---------- */
+.page-footer {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5mm;
+  padding-top: 1mm;
+  border-top: 0.4pt solid var(--line);
+  font-size: 6.6pt;
+  color: var(--muted);
+}

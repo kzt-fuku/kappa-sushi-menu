@@ -1,0 +1,44 @@
+# かっぱ寿司 通常価格一覧
+
+かっぱ寿司のメニュー画像に載っている全96品を、通常の店内価格（税込）が高い順に並べた一覧です。
+iPhone で縦スクロールして見る Web ページと、A4 両面印刷用の PDF（2ページ）があります。
+
+- 公開ページ: https://kzt-fuku.github.io/kappa-sushi-menu/
+- 印刷用 PDF: https://kzt-fuku.github.io/kappa-sushi-menu/kappa-sushi-price-list.pdf
+
+価格は 2026年11月17日に公式メニュー（https://www.kappasushi.jp/menu2 ）で確認したものです。店舗によって価格が異なります。非公式のまとめです。
+
+## 構成
+
+```
+docs/                       GitHub Pages の公開元（main ブランチの /docs）
+  index.html                入口
+  css/style.css
+  js/menu-core.js           並び替え・順位付け（Web と印刷用で共通）
+  js/app.js                 一覧表示とジャンル切り替え
+  data/menu.json            品名・価格・ジャンル・提供量・注記の共通データ
+  kappa-sushi-price-list.pdf  印刷用 PDF（tools で生成）
+tools/                      データ生成・PDF 生成・表示確認（公開しない）
+  build_data.py             menu.json を生成し、公式 JSON と商品コードで照合
+  verify_against_pdf.py     menu.json を既存のランキング PDF と照合
+  print/                    印刷用レイアウト（HTML/CSS/JS）
+  build-pdf.mjs             印刷用 PDF の生成とレイアウト検証
+  check-layout.mjs          375px / 390px 幅での表示確認
+```
+
+## データの更新と PDF の再生成
+
+```sh
+python3 tools/build_data.py                 # 公式 JSON を取得して照合し docs/data/menu.json を出力
+cd tools
+npm install                                 # puppeteer-core（ローカルの Google Chrome を使用）
+npm run fonts                               # PDF 埋め込み用の Noto Sans JP を取得（初回のみ）
+npm run pdf                                 # docs/kappa-sushi-price-list.pdf を生成
+npm run check                               # ローカルで表示確認
+npm run check:live                          # 公開ページで表示確認
+```
+
+- 品名・提供量・価格は `tools/build_data.py` の `PRICED_ITEMS` / `UNPRICED_ITEMS` にあり、既存の価格ランキング PDF から転記したものです。
+- 公式で複数ジャンルに属する品は、該当するすべてのジャンルに表示されます。キッズ・ドリンクは対象外です。
+- PDF の文字サイズは、全品が 4 段（表・裏の左右）に収まる最大値を自動で選び、各段の長さを揃えます。
+- Chrome が標準の場所にない場合は `CHROME_PATH` で指定してください。

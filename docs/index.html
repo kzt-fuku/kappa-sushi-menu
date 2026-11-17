@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#b3122a">
+  <title>かっぱ寿司 通常価格一覧</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>かっぱ寿司 通常価格一覧</h1>
+    <p class="lead">店内飲食・税込の通常価格を高い順に掲載（全<span id="total-count">96</span>品）</p>
+    <ul class="facts">
+      <li>価格は<strong id="checked-date">2026年11月17日</strong>に公式メニューで確認</li>
+      <li>店舗によって価格が異なります。「円〜」は公式の表記です</li>
+      <li>同額は同順位。ジャンルで絞り込んでも全体での順位を表示します</li>
+    </ul>
+    <div class="links">
+      <a class="button button-primary" href="kappa-sushi-price-list.pdf" target="_blank" rel="noopener">印刷用PDF（A4・2ページ）</a>
+      <a class="button" id="official-link" href="https://www.kappasushi.jp/menu2" target="_blank" rel="noopener">公式メニュー</a>
+    </div>
+  </header>
+
+  <nav class="genre-bar" aria-label="ジャンル">
+    <div class="genre-list" id="genre-list" role="group"></div>
+  </nav>
+
+  <main>
+    <p class="status" id="status" role="status">読み込み中…</p>
+    <div class="table-head" aria-hidden="true">
+      <span>順位</span><span>品名</span><span class="price-col">税込価格</span>
+    </div>
+    <ol class="menu-list" id="menu-list"></ol>
+  </main>
+
+  <footer class="page-footer">
+    <p>非公式のまとめです。最新の価格・販売状況は店舗と公式メニューでご確認ください。</p>
+  </footer>
+
+  <script src="js/menu-core.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

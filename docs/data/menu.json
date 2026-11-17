@@ -1,0 +1,1177 @@
+{
+  "checkedDate": "2026-11-17",
+  "officialMenuUrl": "https://www.kappasushi.jp/menu2",
+  "genres": [
+    "期間限定ネタ",
+    "定番にぎり",
+    "炙り・天ぷら",
+    "チーズ・マヨ",
+    "肉ネタ",
+    "軍艦",
+    "巻物",
+    "サイドメニュー",
+    "デザート"
+  ],
+  "items": [
+    {
+      "name": "北海道祭り5貫プレート（単品）",
+      "code": "06220",
+      "quantity": "5貫",
+      "price": 759,
+      "priceLabel": "759円〜",
+      "genres": [
+        "期間限定ネタ"
+      ],
+      "reason": null,
+      "note": "写真の茶碗蒸しは別注文で297円〜。合計1,056円〜"
+    },
+    {
+      "name": "鯛スープの塩ラーメン（メンマチャーシュー）",
+      "code": "06127",
+      "quantity": "1杯",
+      "price": 462,
+      "priceLabel": "462円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "コク旨醤油ラーメン（メンマチャーシュー）",
+      "code": "06129",
+      "quantity": "1杯",
+      "price": 462,
+      "priceLabel": "462円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "きつねうどん",
+      "code": "06793",
+      "quantity": "1杯",
+      "price": 407,
+      "priceLabel": "407円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "えび天うどん",
+      "code": "06794",
+      "quantity": "1杯",
+      "price": 407,
+      "priceLabel": "407円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "二段仕込の醤油とり唐揚げ",
+      "code": "06021",
+      "quantity": "1皿",
+      "price": 407,
+      "priceLabel": "407円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "フライドポテト ～ケチャップ添え～",
+      "code": "06709",
+      "quantity": "1皿",
+      "price": 352,
+      "priceLabel": "352円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "フライドポテト ～トリュフマヨ添え～",
+      "code": "06428",
+      "quantity": "1皿",
+      "price": 352,
+      "priceLabel": "352円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "ベイクドチーズケーキ",
+      "code": "06718",
+      "quantity": "1個",
+      "price": 352,
+      "priceLabel": "352円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "チョコレートケーキ",
+      "code": "06719",
+      "quantity": "1個",
+      "price": 352,
+      "priceLabel": "352円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "プレミアムプリン",
+      "code": "06721",
+      "quantity": "1個",
+      "price": 352,
+      "priceLabel": "352円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "紅茶ゼリー ～ホイップ添え～",
+      "code": "06524",
+      "quantity": "1皿",
+      "price": 352,
+      "priceLabel": "352円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "茶碗蒸し",
+      "code": "06711",
+      "quantity": "1個",
+      "price": 297,
+      "priceLabel": "297円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "かつお出汁入りあんかけ茶碗蒸し",
+      "code": "07065",
+      "quantity": "1個",
+      "price": 297,
+      "priceLabel": "297円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "あさりの味噌汁",
+      "code": "06383",
+      "quantity": "1杯",
+      "price": 297,
+      "priceLabel": "297円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "牛カルビたっぷりマヨ炙り",
+      "code": "06080",
+      "quantity": "2貫",
+      "price": 253,
+      "priceLabel": "253円〜",
+      "genres": [
+        "チーズ・マヨ",
+        "肉ネタ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "鉄火巻",
+      "code": "06321",
+      "quantity": "1本",
+      "price": 253,
+      "priceLabel": "253円〜",
+      "genres": [
+        "巻物"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "あおさの味噌汁",
+      "code": "06772",
+      "quantity": "1杯",
+      "price": 253,
+      "priceLabel": "253円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "アボカドサーモン",
+      "code": "06122",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "定番にぎり",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "えんがわ",
+      "code": "06282",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "たこ",
+      "code": "06594",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": "公式名「生たこ」"
+    },
+    {
+      "name": "つぶ貝",
+      "code": "06243",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "赤貝",
+      "code": "06272",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "とろサーモン",
+      "code": "06239",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "とろサーモン塩炙り",
+      "code": "06124",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "炙り・天ぷら"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "中とろ",
+      "code": "06237",
+      "quantity": "1貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "活〆真鯛",
+      "code": "06638",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": "公式名「活〆真鯛（二貫）」"
+    },
+    {
+      "name": "牛カルビ炙り",
+      "code": "06281",
+      "quantity": "2貫",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "肉ネタ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "ねぎとろ巻",
+      "code": "06319",
+      "quantity": "1本",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "巻物"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "えび天巻",
+      "code": "06720",
+      "quantity": "1本",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "炙り・天ぷら",
+        "巻物"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "玉ねぎと油揚げの味噌汁",
+      "code": "06606",
+      "quantity": "1杯",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "玉ねぎ天盛り",
+      "code": "06693",
+      "quantity": "1皿",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "なす天盛り ～天つゆ付き～",
+      "code": "06786",
+      "quantity": "1皿",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "しっとりクリームケーキ",
+      "code": "06433",
+      "quantity": "1個",
+      "price": 209,
+      "priceLabel": "209円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "国産炭焼きかつおたたき（2貫）",
+      "code": "06560",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "活〆はまち（2貫）",
+      "code": "06139",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "サーモンマヨ炙り",
+      "code": "06617",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "サーモンマヨペッパー炙り",
+      "code": "06618",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "あかいかゲソ（大葉）",
+      "code": "07329",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "あかいかゲソマヨ",
+      "code": "06156",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "えびマヨ炙り",
+      "code": "06609",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "えびマヨペッパー炙り",
+      "code": "06610",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "浜焼き風 えび",
+      "code": "06615",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "〆いわし",
+      "code": "06475",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "オニオンサーモンマヨ",
+      "code": "06039",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "赤えび",
+      "code": "06120",
+      "quantity": "1貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "生えび",
+      "code": "06196",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "オニオンえびマヨ",
+      "code": "06152",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "煮穴子",
+      "code": "06024",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "まいたけ天にぎり",
+      "code": "06064",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "合鴨ロースオニオンマヨ",
+      "code": "06339",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "チーズ・マヨ",
+        "肉ネタ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "えび天にぎり",
+      "code": "06669",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "えび天にぎりマヨ",
+      "code": "06667",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "さくさくイカ天にぎり",
+      "code": "06668",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "さくさくイカ天にぎりマヨ",
+      "code": "06603",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "炙り・天ぷら",
+        "チーズ・マヨ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "ししゃもっこ軍艦",
+      "code": "06128",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "かにみそ",
+      "code": "06445",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "卵黄納豆軍艦",
+      "code": "06842",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "卵黄とろろ軍艦",
+      "code": "07188",
+      "quantity": "2貫",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "干ぴょう巻",
+      "code": "06359",
+      "quantity": "1本",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "巻物"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "かにカマきゅうりコーン小鉢",
+      "code": "06782",
+      "quantity": "1皿",
+      "price": 176,
+      "priceLabel": "176円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "まぐろ",
+      "code": "06060",
+      "quantity": "2貫",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "なす揚げびたし",
+      "code": "06808",
+      "quantity": "2貫",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": "公式名「なすの揚げびたし」"
+    },
+    {
+      "name": "合鴨ロース",
+      "code": "06320",
+      "quantity": "2貫",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "肉ネタ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "てりやきハンバーグ",
+      "code": "09262",
+      "quantity": "2貫",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "肉ネタ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "てりやきハンバーグマヨ",
+      "code": "09263",
+      "quantity": "2貫",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "肉ネタ"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "感動コーンかっぱ軍艦",
+      "code": "06755",
+      "quantity": "2貫",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "かにカマサラダかっぱ軍艦",
+      "code": "06255",
+      "quantity": "2貫",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "まぐたく軍艦",
+      "code": "08711",
+      "quantity": "2貫",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "さっぱりシューアイス",
+      "code": "06399",
+      "quantity": "1皿",
+      "price": 121,
+      "priceLabel": "121円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "ねぎとろにぎり",
+      "code": "06262",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "びん長まぐろ",
+      "code": "06091",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "サーモン",
+      "code": "06004",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "いか",
+      "code": "06015",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": "公式名「天然むらさきいか」"
+    },
+    {
+      "name": "えび",
+      "code": "06010",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "とろ〆さば",
+      "code": "06307",
+      "quantity": "1貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "玉子",
+      "code": "06035",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "いなり",
+      "code": "06740",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "定番にぎり"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "ねぎとろ軍艦",
+      "code": "06552",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "オクラいかめかぶ軍艦",
+      "code": "06131",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "オクラいかめかぶ納豆軍艦",
+      "code": "06138",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "たらこ軍艦",
+      "code": "08637",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "たらこマヨ軍艦",
+      "code": "09465",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "かにカマサラダ軍艦",
+      "code": "06192",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "サラダ軍艦",
+      "code": "06554",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "感動コーン",
+      "code": "08552",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "なっとう軍艦",
+      "code": "06555",
+      "quantity": "2貫",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "軍艦"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "かっぱ巻",
+      "code": "06686",
+      "quantity": "1本",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "巻物"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "なっとう巻",
+      "code": "06684",
+      "quantity": "1本",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "巻物"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "甘ガリ天盛り",
+      "code": "06335",
+      "quantity": "1皿",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "サイドメニュー"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "かっぱのシャリドーナツ きな粉（2個）",
+      "code": "06183",
+      "quantity": "2個",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "かっぱのシャリドーナツ キャラメルシナモン（2個）",
+      "code": "06543",
+      "quantity": "2個",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "京わらび餅",
+      "code": "06379",
+      "quantity": "1皿",
+      "price": 110,
+      "priceLabel": "110円〜",
+      "genres": [
+        "デザート"
+      ],
+      "reason": null,
+      "note": null
+    },
+    {
+      "name": "本日のお楽しみ寿司5貫セット",
+      "code": null,
+      "quantity": null,
+      "price": null,
+      "priceLabel": "—",
+      "genres": [],
+      "reason": "食べ放題専用",
+      "note": "公式発表で食べ放題向けのセットとして掲載。通常販売価格の掲載なし"
+    },
+    {
+      "name": "甘ガリ",
+      "code": null,
+      "quantity": null,
+      "price": null,
+      "priceLabel": "—",
+      "genres": [],
+      "reason": "単品価格の掲載なし",
+      "note": "甘ガリ天盛りは別商品として110円〜"
+    },
+    {
+      "name": "天つゆ",
+      "code": null,
+      "quantity": null,
+      "price": null,
+      "priceLabel": "—",
+      "genres": [],
+      "reason": "単品価格の掲載なし",
+      "note": "なす天盛りの付属品として公式メニューに掲載"
+    }
+  ]
+}

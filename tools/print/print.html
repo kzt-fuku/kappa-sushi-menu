@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>かっぱ寿司 通常価格一覧（印刷用）</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="print.css">
+</head>
+<body>
+  <!-- A4 縦 2 ページ。各ページ左右 2 段で、左段→右段の順に読む -->
+  <section class="page">
+    <header class="page-title">
+      <div class="title-row">
+        <h1>かっぱ寿司 通常価格一覧</h1>
+        <p class="checked">確認日 <span class="checked-date"></span></p>
+      </div>
+      <p class="summary">
+        店内飲食・税込の通常価格を高い順に全<span class="total-count"></span>品掲載。「円〜」は公式の表記で、店舗によって価格が異なります。
+        同額は同順位。価格の掲載がない<span class="unpriced-count"></span>品は末尾に掲載しています。
+      </p>
+    </header>
+    <div class="columns">
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <footer class="page-footer"><span class="source"></span><span>1 / 2</span></footer>
+  </section>
+
+  <section class="page">
+    <header class="page-title page-title-compact">
+      <div class="title-row">
+        <h1>かっぱ寿司 通常価格一覧（つづき）</h1>
+        <p class="checked">確認日 <span class="checked-date"></span>・店内飲食・税込</p>
+      </div>
+    </header>
+    <div class="columns">
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <footer class="page-footer"><span class="source"></span><span>2 / 2</span></footer>
+  </section>
+
+  <script src="../../docs/js/menu-core.js"></script>
+  <script src="print.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+.DS_Store
+tools/node_modules/
+tools/fonts/
+__pycache__/
+進捗.md
