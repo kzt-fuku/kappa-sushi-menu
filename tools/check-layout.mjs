@@ -4,7 +4,7 @@
 // スクリーンショットは SCREENSHOT_DIR（既定: OS の一時ディレクトリ）に保存する。
 import os from "node:os";
 import path from "node:path";
-import { mkdir, readFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rm } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
 import { startServer } from "./static-server.mjs";
@@ -123,6 +123,31 @@ async function checkOrdering(page, data, width, problems) {
   await expectTotal(expected, 5, "リストで＋");
   if (await page.$eval("#order-sheet", (el) => el.scrollWidth > el.clientWidth)) fail("注文リストが横にはみ出す");
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-order-list.png`) });
+
+  // 注文リストを画像で保存（共有シートは使わずダウンロードで検証する）
+  const downloadDir = path.join(SCREENSHOT_DIR, `download-${width}`);
+  await rm(downloadDir, { recursive: true, force: true });
+  await mkdir(downloadDir, { recursive: true });
+  const cdp = await page.createCDPSession();
+  await cdp.send("Page.setDownloadBehavior", { behavior: "allow", downloadPath: downloadDir });
+  await page.evaluate(() => Object.defineProperty(navigator, "canShare", { value: undefined, configurable: true }));
+  await click("#order-save-image");
+  let saved = [];
+  for (let i = 0; i < 50 && !saved.some((f) => f.endsWith(".png")); i += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    saved = await readdir(downloadDir);
+  }
+  const pngName = saved.find((f) => f.endsWith(".png"));
+  if (!pngName) {
+    fail("注文リストの画像がダウンロードされない");
+  } else {
+    const png = await readFile(path.join(downloadDir, pngName));
+    const isPng = png.subarray(1, 4).toString() === "PNG";
+    const imageWidth = png.readUInt32BE(16);
+    const imageHeight = png.readUInt32BE(20);
+    if (!isPng || imageWidth !== 1080 || imageHeight < 600) fail(`画像の形式・サイズ: ${pngName} ${imageWidth}x${imageHeight}`);
+    if (!/^kappa-order-\d{8}-\d{4}\.png$/.test(pngName)) fail(`画像のファイル名: ${pngName}`);
+  }
   await page.$$eval(".order-line", (els) => els[0].querySelector(".remove-button").click());
   await expectTotal(priceOf("北海道祭り5貫プレート（単品）"), 1, "リストで削除");
   const toastInSheet = await page.$eval("#toast", (el) => el.closest("#order-sheet") !== null && !el.hidden);

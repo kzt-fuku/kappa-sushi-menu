@@ -328,6 +328,7 @@
     orderLines.replaceChildren(fragment);
     orderEmpty.hidden = snapshot.lines.length > 0;
     orderClear.disabled = snapshot.lines.length === 0;
+    document.getElementById("order-save-image").disabled = snapshot.lines.length === 0;
   }
 
   function renderTotals(snapshot) {
@@ -349,6 +350,24 @@
   }
 
   document.getElementById("open-order-list").addEventListener("click", () => openSheet(orderSheet));
+
+  // 注文リストを画像で保存（iPhone は共有シートの「画像を保存」で写真へ）
+  const saveImageButton = document.getElementById("order-save-image");
+  saveImageButton.addEventListener("click", async () => {
+    const snapshot = OrderStore.getSnapshot();
+    if (snapshot.lines.length === 0) return;
+    saveImageButton.disabled = true;
+    try {
+      const version = document.querySelector('meta[name="app-version"]').content;
+      const result = await OrderImage.save(snapshot, { version });
+      if (result === "downloaded") showToast("注文リストの画像をダウンロードしました");
+    } catch (error) {
+      console.error("order image failed:", error);
+      showToast("画像を保存できませんでした。もう一度お試しください");
+    } finally {
+      saveImageButton.disabled = OrderStore.getSnapshot().lines.length === 0;
+    }
+  });
 
   orderClear.addEventListener("click", () => {
     const undo = OrderStore.clear();

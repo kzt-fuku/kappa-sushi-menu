@@ -724,3 +724,23 @@ html.sheet-open body {
 .page-footer .version {
   margin-top: 6px;
 }
+
+/* ---------- 注文リストを画像で保存 ---------- */
+.save-image-button {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 10px;
+  border: 1px solid var(--text);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  touch-action: manipulation;
+}
+
+.save-image-button:disabled {
+  border-color: var(--line);
+  color: #c4c4c8;
+}

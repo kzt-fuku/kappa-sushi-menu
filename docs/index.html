@@ -6,10 +6,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#b3122a">
   <!-- バージョンを上げたら、下の css/js の ?v= も同じ値にする（tools/check-layout.mjs で検証） -->
-  <meta name="app-version" content="1.3.0">
+  <meta name="app-version" content="1.4.0">
   <meta name="app-updated" content="2026-11-17">
   <title>かっぱ寿司 通常価格一覧</title>
-  <link rel="stylesheet" href="css/style.css?v=1.3.0">
+  <link rel="stylesheet" href="css/style.css?v=1.4.0">
 </head>
 <body>
   <header class="page-header">
@@ -106,6 +106,7 @@
         <strong id="sheet-total">0円</strong>
         <span id="sheet-count">0皿</span>
       </div>
+      <button type="button" class="save-image-button" id="order-save-image">注文リストを画像で保存</button>
       <ol class="order-lines" id="order-lines"></ol>
       <p class="order-empty" id="order-empty">まだ注文はありません。メニューを押すと追加できます。</p>
       <p class="sheet-hint">店内飲食・税込の通常価格で計算した目安です。店舗によって価格が異なる場合があります。</p>
@@ -116,8 +117,9 @@
     </div>
   </dialog>
 
-  <script src="js/menu-core.js?v=1.3.0"></script>
-  <script src="js/order-store.js?v=1.3.0"></script>
-  <script src="js/app.js?v=1.3.0"></script>
+  <script src="js/menu-core.js?v=1.4.0"></script>
+  <script src="js/order-store.js?v=1.4.0"></script>
+  <script src="js/order-image.js?v=1.4.0"></script>
+  <script src="js/app.js?v=1.4.0"></script>
 </body>
 </html>
