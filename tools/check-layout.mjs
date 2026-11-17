@@ -35,13 +35,133 @@ function inspectList() {
     if (price.right > window.innerWidth) problems.push(`${title}: 価格が画面外`);
     return {
       name: title,
-      rank: row.querySelector(".rank").textContent,
+      rank: row.querySelector(".rank-num").textContent,
       price: row.querySelector(".price").textContent,
     };
   });
   if (priceRights.size > 1) problems.push(`価格の右端がずれている: ${[...priceRights].join(", ")}`);
   const pressed = document.querySelector('.genre-button[aria-pressed="true"]');
   return { problems, items, pressed: pressed && pressed.textContent, status: document.getElementById("status").textContent };
+}
+
+// 注文の記録機能を一通り操作し、合計が正しく計算・保存されることを確認する
+async function checkOrdering(page, data, width, problems) {
+  const label = `${width}px 注文`;
+  const fail = (message) => problems.push(`${label}: ${message}`);
+  const priceOf = (name) => data.items.find((i) => i.name === name).price;
+  const yen = (value) => `${value.toLocaleString("ja-JP")}円`;
+  const text = (selector) => page.$eval(selector, (el) => el.textContent.trim());
+  const click = (selector) => page.$eval(selector, (el) => el.click());
+  const clickRow = (name) =>
+    page.evaluate((n) => {
+      const row = Array.from(document.querySelectorAll("button.menu-row")).find((r) => r.querySelector(".name").textContent === n);
+      row.click();
+    }, name);
+  const expectTotal = async (price, count, step) => {
+    const total = await text("#bar-total");
+    const plates = await text("#bar-count");
+    if (total !== yen(price) || plates !== `${count}皿`) fail(`${step}: 合計 ${total} ${plates}（期待 ${yen(price)} ${count}皿）`);
+  };
+  const isOpen = (selector) => page.$eval(selector, (el) => el.open);
+
+  await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "全て").click());
+  await expectTotal(0, 0, "初期");
+
+  // 価格なしの品は押せない
+  const unpricedButtons = await page.$$eval("button.menu-row", (rows) => rows.filter((r) => r.textContent.includes("—")).length);
+  if (unpricedButtons) fail("価格なしの品が押せる");
+
+  // 中とろを 3 つ注文
+  await clickRow("中とろ");
+  if (!(await isOpen("#quantity-sheet"))) fail("メニューを押しても数量選択が開かない");
+  await click("#quantity-plus");
+  await click("#quantity-plus");
+  const orderLabel = await text("#quantity-order");
+  if (await text("#quantity-value") !== "3" || !orderLabel.includes(yen(priceOf("中とろ") * 3))) fail(`数量選択の表示: ${orderLabel}`);
+  const sheetOverflow = await page.$eval("#quantity-sheet", (el) => el.scrollWidth > el.clientWidth);
+  if (sheetOverflow) fail("数量選択が横にはみ出す");
+  const layout = await page.evaluate(() => {
+    const stepper = document.querySelector("#quantity-sheet .stepper").getBoundingClientRect();
+    const order = document.getElementById("quantity-order").getBoundingClientRect();
+    return { sameRow: Math.abs(stepper.top - order.top) < 2 && order.left >= stepper.right };
+  });
+  if (!layout.sameRow) fail("注文ボタンが数量の横にない");
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-quantity.png`) });
+  await click("#quantity-order");
+  if (await isOpen("#quantity-sheet")) fail("注文後に数量選択が閉じない");
+  let expected = priceOf("中とろ") * 3;
+  await expectTotal(expected, 3, "中とろ×3");
+  const badge = await page.evaluate(() => {
+    const row = Array.from(document.querySelectorAll("button.menu-row")).find((r) => r.querySelector(".name").textContent === "中とろ");
+    return row.querySelector(".ordered-badge").textContent;
+  });
+  if (badge !== "×3") fail(`一覧の注文済み表示: ${badge}`);
+
+  // サーモンを追加して取り消す
+  await clickRow("サーモン");
+  await click("#quantity-order");
+  await expectTotal(expected + priceOf("サーモン"), 4, "サーモン追加");
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-toast.png`) });
+  await click("#toast-undo");
+  await expectTotal(expected, 3, "取り消し");
+
+  // 北海道祭りプレートを追加し、注文リストで数量変更・削除・元に戻す
+  await clickRow("北海道祭り5貫プレート（単品）");
+  await click("#quantity-order");
+  expected += priceOf("北海道祭り5貫プレート（単品）");
+  await expectTotal(expected, 4, "プレート追加");
+  await click("#open-order-list");
+  if (!(await isOpen("#order-sheet"))) fail("注文リストが開かない");
+  const lines = await page.$$eval(".order-line", (els) => els.map((el) => el.querySelector(".order-line-name").textContent));
+  if (lines.join(",") !== "中とろ,北海道祭り5貫プレート（単品）") fail(`注文リストの内容: ${lines.join(",")}`);
+  if (await text("#sheet-total") !== yen(expected)) fail(`注文リストの合計: ${await text("#sheet-total")}`);
+  await page.$$eval(".order-line", (els) => els[0].querySelectorAll(".stepper-button")[1].click());
+  expected += priceOf("中とろ");
+  await expectTotal(expected, 5, "リストで＋");
+  if (await page.$eval("#order-sheet", (el) => el.scrollWidth > el.clientWidth)) fail("注文リストが横にはみ出す");
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-order-list.png`) });
+  await page.$$eval(".order-line", (els) => els[0].querySelector(".remove-button").click());
+  await expectTotal(priceOf("北海道祭り5貫プレート（単品）"), 1, "リストで削除");
+  const toastInSheet = await page.$eval("#toast", (el) => el.closest("#order-sheet") !== null && !el.hidden);
+  if (!toastInSheet) fail("注文リスト表示中に取り消しが表示されない");
+  await click("#toast-undo");
+  await expectTotal(expected, 5, "削除の取り消し");
+  await page.$eval("#order-sheet [data-close]", (el) => el.click());
+
+  // 再読み込みしても記録が残る
+  await page.reload({ waitUntil: "networkidle0" });
+  await page.waitForSelector(".menu-row");
+  await expectTotal(expected, 5, "再読み込み後");
+
+  // 最後の行が合計バーに隠れない
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  const hidden = await page.evaluate(() => {
+    const last = Array.from(document.querySelectorAll(".menu-item")).pop().getBoundingClientRect();
+    return last.bottom > document.getElementById("order-bar").getBoundingClientRect().top + 0.5;
+  });
+  if (hidden) fail("最後の行が合計バーに隠れる");
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-bar-bottom.png`) });
+
+  // すべて消去
+  await click("#open-order-list");
+  await click("#order-clear");
+  await expectTotal(0, 0, "すべて消去");
+  await page.$eval("#order-sheet [data-close]", (el) => el.click());
+
+  // 前回（1 日前）の記録が残っていたら「新しく始める」を案内する
+  await page.evaluate((item) => {
+    const dayAgo = Date.now() - 24 * 60 * 60 * 1000;
+    localStorage.setItem("kappa-sushi-order-v1", JSON.stringify({
+      version: 1, updatedAt: dayAgo,
+      lines: [{ code: item.code, name: item.name, price: item.price, quantity: 2, addedAt: dayAgo }],
+    }));
+  }, data.items.find((i) => i.name === "まぐろ"));
+  await page.reload({ waitUntil: "networkidle0" });
+  await expectTotal(priceOf("まぐろ") * 2, 2, "前回の記録");
+  if (await page.$eval("#stale-notice", (el) => el.hidden)) fail("前回の記録の案内が出ない");
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-stale.png`) });
+  await click("#stale-reset");
+  await expectTotal(0, 0, "新しく始める");
 }
 
 function priceValue(label) {
@@ -74,7 +194,9 @@ async function main() {
 
   try {
     for (const width of VIEWPORT_WIDTHS) {
-      const page = await browser.newPage();
+      // 注文記録（localStorage）が幅ごとに混ざらないよう、別のコンテキストで開く
+      const context = await browser.createBrowserContext();
+      const page = await context.newPage();
       await page.setUserAgent(IPHONE_UA);
       await page.setViewport({ width, height: VIEWPORT_HEIGHT, deviceScaleFactor: DEVICE_SCALE_FACTOR, isMobile: true, hasTouch: true });
       page.on("pageerror", (error) => problems.push(`${width}px: JS エラー ${error.message}`));
@@ -119,8 +241,9 @@ async function main() {
           await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-genre.png`) });
         }
       }
-      console.log(`${width}px: 全て ${all.items.length} 品、ジャンル ${data.genres.length} 種を確認`);
-      await page.close();
+      await checkOrdering(page, data, width, problems);
+      console.log(`${width}px: 全て ${all.items.length} 品、ジャンル ${data.genres.length} 種、注文の記録を確認`);
+      await context.close();
     }
 
     // 印刷用 PDF へのリンク

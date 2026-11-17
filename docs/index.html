@@ -17,6 +17,7 @@
       <li>店舗によって価格が異なります。「円〜」は公式の表記です</li>
       <li>同額は同順位。同額内は1貫のにぎりを先頭に、以降はおおよその人気順</li>
       <li>ジャンルで絞り込んでも全体での順位を表示します</li>
+      <li>メニューを押すと注文を記録できます。合計は画面下に表示し、記録はこの端末だけに保存されます</li>
     </ul>
     <div class="links">
       <a class="button button-primary" href="kappa-sushi-price-list.pdf" target="_blank" rel="noopener">印刷用PDF（A4・2ページ）</a>
@@ -40,7 +41,73 @@
     <p>非公式のまとめです。最新の価格・販売状況は店舗と公式メニューでご確認ください。</p>
   </footer>
 
+  <!-- 画面下に常に表示する合計 -->
+  <div class="order-bar" id="order-bar">
+    <div class="stale-notice" id="stale-notice" hidden>
+      <span id="stale-text">前回の注文記録が残っています</span>
+      <span class="stale-actions">
+        <button type="button" class="text-button" id="stale-keep">続ける</button>
+        <button type="button" class="text-button text-button-strong" id="stale-reset">新しく始める</button>
+      </span>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+      <span class="toast-text" id="toast-text"></span>
+      <button type="button" class="toast-undo" id="toast-undo">取り消し</button>
+    </div>
+    <div class="order-bar-inner">
+      <div class="order-bar-summary" aria-live="polite">
+        <span class="order-bar-label">今の合計</span>
+        <span class="order-bar-total" id="bar-total">0円</span>
+        <span class="order-bar-count" id="bar-count">0皿</span>
+      </div>
+      <button type="button" class="order-bar-button" id="open-order-list">注文リスト</button>
+    </div>
+  </div>
+
+  <!-- メニューを押したときの数量選択 -->
+  <dialog class="sheet" id="quantity-sheet" aria-labelledby="quantity-name">
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <div>
+          <p class="sheet-title" id="quantity-name"></p>
+          <p class="sheet-meta" id="quantity-meta"></p>
+        </div>
+        <button type="button" class="sheet-close" data-close aria-label="閉じる">×</button>
+      </div>
+      <div class="quantity-row">
+        <div class="stepper" role="group" aria-label="数量">
+          <button type="button" class="stepper-button" id="quantity-minus" aria-label="1つ減らす">−</button>
+          <output class="stepper-value" id="quantity-value">1</output>
+          <button type="button" class="stepper-button" id="quantity-plus" aria-label="1つ増やす">＋</button>
+        </div>
+        <button type="button" class="order-button" id="quantity-order">注文</button>
+      </div>
+      <p class="sheet-hint" id="quantity-ordered"></p>
+    </div>
+  </dialog>
+
+  <!-- 注文リスト -->
+  <dialog class="sheet sheet-tall" id="order-sheet" aria-labelledby="order-sheet-title">
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <p class="sheet-title" id="order-sheet-title">注文リスト</p>
+        <button type="button" class="sheet-close" data-close aria-label="閉じる">×</button>
+      </div>
+      <div class="order-total">
+        <span>合計</span>
+        <strong id="sheet-total">0円</strong>
+        <span id="sheet-count">0皿</span>
+      </div>
+      <ol class="order-lines" id="order-lines"></ol>
+      <p class="order-empty" id="order-empty">まだ注文はありません。メニューを押すと追加できます。</p>
+      <p class="sheet-hint">店内飲食・税込の通常価格で計算した目安です。店舗によって価格が異なる場合があります。</p>
+      <p class="sheet-hint" id="storage-warning" hidden>この端末では記録を保存できません（プライベートブラウズなど）。ページを閉じると記録が消えます。</p>
+      <button type="button" class="clear-button" id="order-clear">すべて消去</button>
+    </div>
+  </dialog>
+
   <script src="js/menu-core.js"></script>
+  <script src="js/order-store.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@
   --price-width: 4.8em;
   --row-gap: 0.6em;
   --page-padding: 14px;
+  --order-bar-height: 64px;
 }
 
 * {
@@ -165,23 +166,65 @@ main {
 }
 
 .menu-row {
+  width: 100%;
+  margin: 0;
   padding: 9px 0;
+  border: 0;
   border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.menu-row:nth-child(even) {
+.menu-item:nth-child(even) .menu-row {
   background: var(--bg-sub);
 }
 
+button.menu-row {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+button.menu-row:active {
+  background: #ececef;
+}
+
+/* 注文済みの行は左端に色帯（行の高さは変えない） */
+.menu-item .menu-row.is-ordered {
+  box-shadow: inset 4px 0 0 var(--accent);
+}
+
 .rank {
-  padding-left: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding-left: 8px;
   color: var(--muted);
   font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
+.ordered-badge:empty {
+  display: none;
+}
+
+.ordered-badge {
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
 .name-cell {
+  display: block;
   min-width: 0;
 }
 
@@ -232,11 +275,390 @@ main {
 
 /* ---------- フッター ---------- */
 .page-footer {
-  padding: 16px var(--page-padding) calc(24px + env(safe-area-inset-bottom));
+  /* 画面下の合計バーに最後の行が隠れないよう、バーの高さ分をあける */
+  padding: 16px var(--page-padding) calc(var(--order-bar-height) + 24px + env(safe-area-inset-bottom));
   color: var(--muted);
   font-size: 0.75rem;
 }
 
 .page-footer p {
   margin: 0;
+}
+
+/* ---------- 画面下の合計バー ---------- */
+.order-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.order-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: var(--order-bar-height);
+  padding: 8px var(--page-padding);
+}
+
+.order-bar-summary {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  min-width: 0;
+}
+
+.order-bar-label {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.order-bar-total {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.order-bar-count {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.order-bar-button {
+  flex: none;
+  min-height: 46px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  touch-action: manipulation;
+}
+
+.stale-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 10px;
+  padding: 8px var(--page-padding);
+  background: var(--accent-soft);
+  font-size: 0.8rem;
+}
+
+.stale-notice[hidden] {
+  display: none;
+}
+
+.stale-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.text-button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.text-button-strong {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---------- 取り消し付きの通知 ---------- */
+.toast {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(var(--order-bar-height) + env(safe-area-inset-bottom) + 10px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #222;
+  color: #fff;
+  font-size: 0.85rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.toast[hidden],
+.toast-undo[hidden] {
+  display: none;
+}
+
+.toast-text {
+  min-width: 0;
+}
+
+.toast-undo {
+  flex: none;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---------- ボトムシート（数量選択・注文リスト） ---------- */
+html.sheet-open,
+html.sheet-open body {
+  overflow: hidden;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  max-height: 85dvh;
+  margin: auto auto 0;
+  padding: 0;
+  border: 0;
+  border-radius: 16px 16px 0 0;
+  background: #fff;
+  color: var(--text);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.sheet::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.sheet-body {
+  padding: 16px var(--page-padding) calc(16px + env(safe-area-inset-bottom));
+}
+
+.sheet-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sheet-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.sheet-meta {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.sheet-close {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bg-sub);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.sheet-hint {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.sheet-hint:empty,
+.sheet-hint[hidden] {
+  display: none;
+}
+
+.quantity-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  flex: none;
+  border: 1px solid #c9c9ce;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.stepper-button {
+  width: 48px;
+  height: 52px;
+  border: 0;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.4rem;
+  touch-action: manipulation;
+}
+
+.stepper-button:disabled {
+  color: #c4c4c8;
+}
+
+.stepper-value {
+  min-width: 2.2em;
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.order-button {
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  touch-action: manipulation;
+}
+
+/* 注文リスト */
+.order-total {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--bg-sub);
+  font-variant-numeric: tabular-nums;
+}
+
+.order-total strong {
+  font-size: 1.5rem;
+}
+
+.order-lines {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.order-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 10px;
+  row-gap: 6px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.order-line-info {
+  min-width: 0;
+}
+
+.order-line-name {
+  display: block;
+  font-weight: 600;
+}
+
+.order-line-unit {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.order-line-subtotal {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.order-line-controls {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.stepper-small .stepper-button {
+  width: 44px;
+  height: 40px;
+  font-size: 1.2rem;
+}
+
+.stepper-small .stepper-value {
+  font-size: 1.05rem;
+}
+
+.remove-button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #c9c9ce;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.order-empty {
+  margin: 16px 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.order-empty[hidden] {
+  display: none;
+}
+
+.clear-button {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 14px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+}
+
+.clear-button:disabled {
+  border-color: var(--line);
+  color: #c4c4c8;
 }
