@@ -3,7 +3,7 @@
   "use strict";
 
   // 通常価格の高い順に並べ、同額は同順位（1, 2, 2, 4 …）にする。
-  // 同額内は menu.json の掲載順（既存 PDF の順）を保つ。価格のない品は末尾で順位なし。
+  // 同額内は menu.json の掲載順（1 貫のにぎりが先頭、以降はおおよその人気順）を保つ。価格のない品は末尾で順位なし。
   function rankItems(items) {
     const indexed = items.map((item, index) => ({ item, index }));
     indexed.sort((a, b) => {

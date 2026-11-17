@@ -3,6 +3,7 @@
 品名・提供量・価格は既存の「通常販売価格ランキング」PDF（2026-11-17 確認）から転記したもの。
 公式メニュー（https://www.kappasushi.jp/menu2）が読み込む categorylist.json / menulist.json を
 商品コードで照合し、ジャンルを付与するとともに、価格が PDF と一致することを検証する。
+掲載順は価格の高い順。同額内は 1 貫のにぎりを先頭にし、以降はおおよその人気順（POPULARITY_ORDER）。
 
 使い方:
     python3 tools/build_data.py                      # 公式 JSON をダウンロードして照合
@@ -36,7 +37,7 @@ GENRES = [
     "デザート",
 ]
 
-# PDF の掲載順（価格の高い順、同額内は画像順）。
+# 既存 PDF からの転記（PDF の掲載順）。出力時の順序は sort_key() で決める。
 # (画像の品名, 公式商品コード, 提供量, 税込価格, 公式名（画像と異なる場合のみ）, 注記)
 PRICED_ITEMS = [
     ("北海道祭り5貫プレート（単品）", "06220", "5貫", 759, None,
@@ -135,6 +136,116 @@ PRICED_ITEMS = [
     ("京わらび餅", "06379", "1皿", 110, None, None),
 ]
 
+# 同額内の掲載順。1 貫のにぎり（提供量が ONE_PIECE）を先頭にし、以降はこのリストの順（おおよその人気順）。
+# 人気順は公式の売上データがないため、回転寿司の人気ネタ調査（サーモン・まぐろが上位、
+# 炙りサーモンマヨなど）と、かっぱ寿司のユーザー投票の傾向をもとにした目安。
+ONE_PIECE = "1貫"
+POPULARITY_ORDER = [
+    # 759円
+    "北海道祭り5貫プレート（単品）",
+    # 462円
+    "鯛スープの塩ラーメン（メンマチャーシュー）",
+    "コク旨醤油ラーメン（メンマチャーシュー）",
+    # 407円
+    "二段仕込の醤油とり唐揚げ",
+    "えび天うどん",
+    "きつねうどん",
+    # 352円
+    "フライドポテト ～ケチャップ添え～",
+    "プレミアムプリン",
+    "フライドポテト ～トリュフマヨ添え～",
+    "チョコレートケーキ",
+    "ベイクドチーズケーキ",
+    "紅茶ゼリー ～ホイップ添え～",
+    # 297円
+    "茶碗蒸し",
+    "あさりの味噌汁",
+    "かつお出汁入りあんかけ茶碗蒸し",
+    # 253円
+    "牛カルビたっぷりマヨ炙り",
+    "鉄火巻",
+    "あおさの味噌汁",
+    # 209円
+    "中とろ",
+    "とろサーモン",
+    "とろサーモン塩炙り",
+    "アボカドサーモン",
+    "活〆真鯛",
+    "たこ",
+    "えんがわ",
+    "牛カルビ炙り",
+    "ねぎとろ巻",
+    "つぶ貝",
+    "赤貝",
+    "えび天巻",
+    "玉ねぎ天盛り",
+    "なす天盛り ～天つゆ付き～",
+    "玉ねぎと油揚げの味噌汁",
+    "しっとりクリームケーキ",
+    # 176円
+    "赤えび",
+    "サーモンマヨ炙り",
+    "活〆はまち（2貫）",
+    "えびマヨ炙り",
+    "生えび",
+    "オニオンサーモンマヨ",
+    "えび天にぎり",
+    "煮穴子",
+    "国産炭焼きかつおたたき（2貫）",
+    "サーモンマヨペッパー炙り",
+    "えびマヨペッパー炙り",
+    "オニオンえびマヨ",
+    "〆いわし",
+    "あかいかゲソ（大葉）",
+    "あかいかゲソマヨ",
+    "浜焼き風 えび",
+    "えび天にぎりマヨ",
+    "さくさくイカ天にぎり",
+    "さくさくイカ天にぎりマヨ",
+    "まいたけ天にぎり",
+    "合鴨ロースオニオンマヨ",
+    "かにみそ",
+    "卵黄納豆軍艦",
+    "卵黄とろろ軍艦",
+    "ししゃもっこ軍艦",
+    "干ぴょう巻",
+    "かにカマきゅうりコーン小鉢",
+    # 121円
+    "まぐろ",
+    "まぐたく軍艦",
+    "てりやきハンバーグ",
+    "合鴨ロース",
+    "感動コーンかっぱ軍艦",
+    "かにカマサラダかっぱ軍艦",
+    "てりやきハンバーグマヨ",
+    "なす揚げびたし",
+    "さっぱりシューアイス",
+    # 110円
+    "とろ〆さば",
+    "サーモン",
+    "えび",
+    "ねぎとろにぎり",
+    "びん長まぐろ",
+    "ねぎとろ軍艦",
+    "サラダ軍艦",
+    "いか",
+    "玉子",
+    "感動コーン",
+    "いなり",
+    "かっぱ巻",
+    "なっとう軍艦",
+    "なっとう巻",
+    "たらこマヨ軍艦",
+    "かにカマサラダ軍艦",
+    "たらこ軍艦",
+    "オクラいかめかぶ軍艦",
+    "オクラいかめかぶ納豆軍艦",
+    "かっぱのシャリドーナツ きな粉（2個）",
+    "かっぱのシャリドーナツ キャラメルシナモン（2個）",
+    "京わらび餅",
+    "甘ガリ天盛り",
+]
+
 # 通常販売価格を確認できなかった品（一覧の末尾に掲載）。
 # (画像の品名, 理由, 注記)
 UNPRICED_ITEMS = [
@@ -160,6 +271,11 @@ def load_official(official_dir):
     categories = data["categorylist"]["BrandCategory"]
     products = {p["code"]: p for p in data["menulist"]["Product"]}
     return categories, products
+
+
+def sort_key(item):
+    """価格の高い順 → 同額内は 1 貫のにぎりが先 → おおよその人気順。"""
+    return (-item["price"], item["quantity"] != ONE_PIECE, POPULARITY_ORDER.index(item["name"]))
 
 
 def build(categories, products):
@@ -198,6 +314,12 @@ def build(categories, products):
             "note": note,
         })
 
+    missing = {item["name"] for item in items} ^ set(POPULARITY_ORDER)
+    if missing or len(POPULARITY_ORDER) != len(set(POPULARITY_ORDER)):
+        errors.append(f"POPULARITY_ORDER と品名が一致しない: {sorted(missing)}")
+        return items, errors
+    items.sort(key=sort_key)
+
     for name, reason, note in UNPRICED_ITEMS:
         items.append({
             "name": name,
@@ -218,9 +340,6 @@ def build(categories, products):
     codes = [item["code"] for item in items if item["code"]]
     if len(set(codes)) != len(codes):
         errors.append("商品コードが重複している")
-    prices = [item["price"] for item in items if item["price"] is not None]
-    if prices != sorted(prices, reverse=True):
-        errors.append("PDF 順が価格の高い順になっていない")
 
     return items, errors
 

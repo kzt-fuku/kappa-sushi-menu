@@ -89,6 +89,9 @@ async function main() {
       if (all.items.length !== data.items.length) problems.push(`${label}: ${all.items.length} 品表示（期待 ${data.items.length}）`);
       if (new Set(all.items.map((i) => i.name)).size !== all.items.length) problems.push(`${label}: 品名が重複`);
       checkOrder(all.items, problems, label);
+      if (all.items.map((i) => i.name).join("\n") !== data.items.map((i) => i.name).join("\n")) {
+        problems.push(`${label}: 掲載順が menu.json と異なる`);
+      }
       const rankByName = new Map(all.items.map((i) => [i.name, i.rank]));
       await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-all-top.png`) });
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -105,8 +108,8 @@ async function main() {
         result.problems.forEach((p) => problems.push(`${glabel}: ${p}`));
         const expected = data.items.filter((i) => i.genres.includes(genre)).map((i) => i.name);
         const shown = result.items.map((i) => i.name);
-        if (shown.length !== expected.length || expected.some((n) => !shown.includes(n))) {
-          problems.push(`${glabel}: 表示 ${shown.length} 品 / 期待 ${expected.length} 品`);
+        if (shown.join("\n") !== expected.join("\n")) {
+          problems.push(`${glabel}: 表示 ${shown.length} 品 / 期待 ${expected.length} 品、または掲載順が menu.json と異なる`);
         }
         result.items.forEach((i) => {
           if (rankByName.get(i.name) !== i.rank) problems.push(`${glabel}: ${i.name} の順位が全体と異なる`);
