@@ -51,11 +51,23 @@ h1 {
   font-weight: 600;
 }
 
+.lead-sub {
+  margin: -4px 0 10px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 .facts {
-  margin: 0 0 12px;
-  padding-left: 1.1em;
+  margin: 10px 0 0;
+  padding: 10px 12px 10px 1.9em;
+  border-radius: 8px;
+  background: var(--bg-sub);
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.facts[hidden] {
+  display: none;
 }
 
 .facts strong {
@@ -743,4 +755,23 @@ html.sheet-open body {
 .save-image-button:disabled {
   border-color: var(--line);
   color: #c4c4c8;
+}
+
+/* 「詳細」ボタン: 開閉の向きを矢印で示す */
+.button-details {
+  background: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button-details::after {
+  content: "▼";
+  margin-left: 6px;
+  font-size: 0.65em;
+}
+
+.button-details[aria-expanded="true"]::after {
+  content: "▲";
 }

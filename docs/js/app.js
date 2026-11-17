@@ -396,6 +396,16 @@
     showToast("前回の記録を消去しました", undo);
   });
 
+  // ---------- ページの説明（詳細）の開閉 ----------
+
+  const detailsToggle = document.getElementById("details-toggle");
+  const facts = document.getElementById("facts");
+  detailsToggle.addEventListener("click", () => {
+    const expanded = detailsToggle.getAttribute("aria-expanded") === "true";
+    detailsToggle.setAttribute("aria-expanded", String(!expanded));
+    facts.hidden = expanded;
+  });
+
   // ---------- 初期化 ----------
 
   function showVersion() {
@@ -419,7 +429,9 @@
       const data = await response.json();
 
       rankedItems = KappaMenu.rankItems(data.items);
-      document.getElementById("checked-date").textContent = KappaMenu.formatCheckedDate(data.checkedDate);
+      document.querySelectorAll(".checked-date").forEach((el) => {
+        el.textContent = KappaMenu.formatCheckedDate(data.checkedDate);
+      });
       document.getElementById("total-count").textContent = String(data.items.length);
       document.getElementById("official-link").href = data.officialMenuUrl;
 

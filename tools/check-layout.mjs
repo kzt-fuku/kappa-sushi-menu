@@ -218,6 +218,22 @@ async function checkSearchAndVersion(page, data, width, problems) {
     await page.type("#search", query);
   };
 
+  // ページ上部の説明は「詳細」で開閉し、初期状態は閉じている
+  const details = () => page.evaluate(() => ({
+    hidden: document.getElementById("facts").hidden,
+    expanded: document.getElementById("details-toggle").getAttribute("aria-expanded"),
+    headerHeight: document.querySelector(".page-header").getBoundingClientRect().height,
+  }));
+  const closed = await details();
+  if (!closed.hidden || closed.expanded !== "false") problems.push(`${width}px 詳細: 初期状態で開いている`);
+  await page.$eval("#details-toggle", (el) => el.click());
+  const opened = await details();
+  if (opened.hidden || opened.expanded !== "true" || opened.headerHeight <= closed.headerHeight) problems.push(`${width}px 詳細: 押しても開かない`);
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-details-open.png`) });
+  await page.$eval("#details-toggle", (el) => el.click());
+  if (!(await details()).hidden) problems.push(`${width}px 詳細: 閉じない`);
+  console.log(`${width}px: ヘッダーの高さ 閉 ${Math.round(closed.headerHeight)}px / 開 ${Math.round(opened.headerHeight)}px`);
+
   // ジャンルを選んだ状態から検索すると「全て」から探す
   await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "デザート").click());
   for (const query of ["マグロ", "生たこ", "ｻｰﾓﾝ", "イカ天"]) {

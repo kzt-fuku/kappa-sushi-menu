@@ -6,26 +6,29 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#b3122a">
   <!-- バージョンを上げたら、下の css/js の ?v= も同じ値にする（tools/check-layout.mjs で検証） -->
-  <meta name="app-version" content="1.4.0">
+  <meta name="app-version" content="1.4.1">
   <meta name="app-updated" content="2026-11-17">
   <title>かっぱ寿司 通常価格一覧</title>
-  <link rel="stylesheet" href="css/style.css?v=1.4.0">
+  <link rel="stylesheet" href="css/style.css?v=1.4.1">
 </head>
 <body>
   <header class="page-header">
     <h1>かっぱ寿司 通常価格一覧</h1>
-    <p class="lead">店内飲食・税込の通常価格を高い順に掲載（全<span id="total-count">96</span>品）</p>
-    <ul class="facts">
-      <li>価格は<strong id="checked-date">2026年11月17日</strong>に公式メニューで確認</li>
+    <p class="lead">店内飲食・税込の通常価格（全<span id="total-count">96</span>品）</p>
+    <p class="lead-sub"><span class="checked-date">2026年11月17日</span>確認・店舗によって価格が異なります</p>
+    <div class="links">
+      <button type="button" class="button button-details" id="details-toggle" aria-expanded="false" aria-controls="facts">詳細</button>
+      <a class="button button-primary" href="kappa-sushi-price-list.pdf" target="_blank" rel="noopener">印刷用PDF</a>
+      <a class="button" id="official-link" href="https://www.kappasushi.jp/menu2" target="_blank" rel="noopener">公式メニュー</a>
+    </div>
+    <ul class="facts" id="facts" hidden>
+      <li>価格は<strong class="checked-date">2026年11月17日</strong>に公式メニューで確認した通常価格です</li>
       <li>店舗によって価格が異なります。「円〜」は公式の表記です</li>
       <li>同額は同順位。同額内は1貫のにぎりを先頭に、以降はおおよその人気順</li>
       <li>ジャンルで絞り込んでも全体での順位を表示します</li>
       <li>メニューを押すと注文を記録できます。合計は画面下に表示し、記録はこの端末だけに保存されます</li>
+      <li>印刷用PDFはA4・2ページ（両面印刷1枚）です</li>
     </ul>
-    <div class="links">
-      <a class="button button-primary" href="kappa-sushi-price-list.pdf" target="_blank" rel="noopener">印刷用PDF（A4・2ページ）</a>
-      <a class="button" id="official-link" href="https://www.kappasushi.jp/menu2" target="_blank" rel="noopener">公式メニュー</a>
-    </div>
   </header>
 
   <nav class="genre-bar" aria-label="検索とジャンル">
@@ -117,9 +120,9 @@
     </div>
   </dialog>
 
-  <script src="js/menu-core.js?v=1.4.0"></script>
-  <script src="js/order-store.js?v=1.4.0"></script>
-  <script src="js/order-image.js?v=1.4.0"></script>
-  <script src="js/app.js?v=1.4.0"></script>
+  <script src="js/menu-core.js?v=1.4.1"></script>
+  <script src="js/order-store.js?v=1.4.1"></script>
+  <script src="js/order-image.js?v=1.4.1"></script>
+  <script src="js/app.js?v=1.4.1"></script>
 </body>
 </html>
