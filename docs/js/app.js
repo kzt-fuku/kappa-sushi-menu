@@ -3,6 +3,9 @@
 
   const DATA_URL = "data/menu.json"; // 相対パス（/リポジトリ名/ 配下でも動作）
   const ALL_LABEL = "全て";
+  const FREQUENT_KEY = "__frequent__"; // ジャンル切り替えの「よく頼む」
+  const FREQUENT_LABEL = "よく頼む";
+  const FREQUENT_LIMIT = 15;
   const MAX_QUANTITY_PER_ORDER = 20;
   const TOAST_DURATION_MS = 6000;
   const STALE_RECORD_HOURS = 6; // これより前の記録が残っていたら「新しく始める」を案内する
@@ -11,6 +14,8 @@
   const genreList = document.getElementById("genre-list");
   const menuList = document.getElementById("menu-list");
   const status = document.getElementById("status");
+  const searchInput = document.getElementById("search");
+  const listEmpty = document.getElementById("list-empty");
 
   const quantitySheet = document.getElementById("quantity-sheet");
   const quantityName = document.getElementById("quantity-name");
@@ -33,7 +38,8 @@
   const orderBar = document.getElementById("order-bar");
 
   let rankedItems = [];
-  let currentGenre = null;
+  let currentGenre = null; // null=全て、FREQUENT_KEY=よく頼む、それ以外は公式ジャンル名
+  let searchQuery = "";
   let selectedItem = null;
   let selectedQuantity = 1;
   let toastTimer = null;
@@ -54,17 +60,19 @@
 
   function renderGenreButtons(genres) {
     genreList.replaceChildren();
-    [null].concat(genres).forEach((genre) => {
-      const button = createElement("button", "genre-button", genre || ALL_LABEL);
+    [null, FREQUENT_KEY].concat(genres).forEach((genre) => {
+      const label = genre === null ? ALL_LABEL : genre === FREQUENT_KEY ? FREQUENT_LABEL : genre;
+      const button = createElement("button", "genre-button", label);
       button.type = "button";
       button.dataset.genre = genre || "";
+      if (genre === FREQUENT_KEY) button.classList.add("genre-button-frequent");
       button.setAttribute("aria-pressed", String(genre === currentGenre));
       button.addEventListener("click", () => selectGenre(genre));
       genreList.appendChild(button);
     });
   }
 
-  function renderRow(item) {
+  function renderRow(item, extra) {
     const orderable = item.price !== null;
     const listItem = createElement("li", "menu-item");
     // 価格のある品は押すと数量選択を開く。価格なしの品は注文できない
@@ -87,6 +95,7 @@
     if (item.quantity) nameCell.appendChild(createElement("span", "quantity", item.quantity));
     if (item.reason) nameCell.appendChild(createElement("span", "reason", item.reason));
     if (item.note) nameCell.appendChild(createElement("span", "note", item.note));
+    if (extra) nameCell.appendChild(createElement("span", "frequency", extra));
     row.appendChild(nameCell);
 
     row.appendChild(createElement("span", "price", item.priceLabel));
@@ -104,28 +113,82 @@
     });
   }
 
-  function render() {
+  // 表示する品・状態表示・該当なしのときの案内を決める
+  function currentView() {
+    if (searchQuery) {
+      const items = KappaMenu.searchItems(rankedItems, searchQuery);
+      return {
+        rows: items.map((item) => ({ item })),
+        status: `「${searchInput.value.trim()}」の検索：${items.length}品`,
+        empty: "一致する品はありません。ひらがな・カタカナや、名前の一部で探してください。",
+      };
+    }
+    if (currentGenre === FREQUENT_KEY) {
+      const counts = OrderStore.frequencies();
+      const items = rankedItems
+        .filter((item) => item.code && counts[item.code] > 0)
+        .sort((a, b) => counts[b.code] - counts[a.code])
+        .slice(0, FREQUENT_LIMIT);
+      return {
+        rows: items.map((item) => ({ item, extra: `これまでに${counts[item.code]}皿` })),
+        status: `${FREQUENT_LABEL}：${items.length}品（注文した数の多い順）`,
+        empty: "まだ注文の記録がありません。メニューを押して注文すると、ここに表示されます。",
+      };
+    }
     const items = KappaMenu.filterByGenre(rankedItems, currentGenre);
+    return { rows: items.map((item) => ({ item })), status: `${currentGenre || ALL_LABEL}：${items.length}品`, empty: "" };
+  }
+
+  function render() {
+    const view = currentView();
     const fragment = document.createDocumentFragment();
-    items.forEach((item) => fragment.appendChild(renderRow(item)));
+    view.rows.forEach(({ item, extra }) => fragment.appendChild(renderRow(item, extra)));
     menuList.replaceChildren(fragment);
-    status.textContent = `${currentGenre || ALL_LABEL}：${items.length}品`;
+    status.textContent = view.status;
+    listEmpty.textContent = view.empty;
+    listEmpty.hidden = view.rows.length > 0;
     updateOrderedBadges();
   }
 
-  function selectGenre(genre) {
-    currentGenre = genre;
+  function updateGenrePressed() {
     genreList.querySelectorAll(".genre-button").forEach((button) => {
-      button.setAttribute("aria-pressed", String((button.dataset.genre || null) === genre));
+      button.setAttribute("aria-pressed", String((button.dataset.genre || null) === currentGenre));
     });
-    render();
-    // 切り替え後は一覧の先頭を表示する（ヘッダーより下にいるときだけ）
+  }
+
+  // 切り替え後は一覧の先頭を表示する（ヘッダーより下にいるときだけ）
+  function scrollToListTop() {
     const listTop = menuList.getBoundingClientRect().top;
     const barHeight = document.querySelector(".genre-bar").offsetHeight;
     if (listTop < barHeight) {
       window.scrollBy({ top: listTop - barHeight - 40 });
     }
   }
+
+  function selectGenre(genre) {
+    currentGenre = genre;
+    // ジャンルを選んだら検索は解除する
+    searchInput.value = "";
+    searchQuery = "";
+    updateGenrePressed();
+    render();
+    scrollToListTop();
+  }
+
+  // 検索は「全て」から探す
+  searchInput.addEventListener("input", () => {
+    searchQuery = KappaMenu.normalizeForSearch(searchInput.value);
+    if (searchQuery && currentGenre !== null) {
+      currentGenre = null;
+      updateGenrePressed();
+    }
+    render();
+  });
+
+  // キーボードの「検索」でキーボードを閉じて結果を見やすくする
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") searchInput.blur();
+  });
 
   // ---------- シート（dialog）共通 ----------
 
@@ -280,7 +343,8 @@
   function onOrderChange(snapshot) {
     renderTotals(snapshot);
     renderOrderLines(snapshot);
-    updateOrderedBadges();
+    if (currentGenre === FREQUENT_KEY && !searchQuery && rankedItems.length) render();
+    else updateOrderedBadges();
     if (snapshot.lines.length === 0) staleNotice.hidden = true;
   }
 
@@ -314,6 +378,16 @@
   });
 
   // ---------- 初期化 ----------
+
+  function showVersion() {
+    const version = document.querySelector('meta[name="app-version"]').content;
+    const updated = document.querySelector('meta[name="app-updated"]').content;
+    document.querySelectorAll(".app-version").forEach((el) => {
+      el.textContent = `v${version}（${KappaMenu.formatCheckedDate(updated)}更新）`;
+    });
+  }
+
+  showVersion();
 
   OrderStore.subscribe(onOrderChange);
   onOrderChange(OrderStore.getSnapshot());

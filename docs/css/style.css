@@ -662,3 +662,65 @@ html.sheet-open body {
   border-color: var(--line);
   color: #c4c4c8;
 }
+
+/* ---------- 品名検索 ---------- */
+.search-box {
+  margin-bottom: 8px;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid #c9c9ce;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  /* 16px 未満だと iPhone が入力時に画面を拡大する */
+  font-size: 16px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent-soft);
+}
+
+/* ---------- よく頼む ---------- */
+.genre-button-frequent {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.frequency {
+  display: block;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.list-empty {
+  margin: 24px 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.list-empty[hidden] {
+  display: none;
+}
+
+/* ---------- バージョン ---------- */
+.version {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.page-footer .version {
+  margin-top: 6px;
+}

@@ -4,11 +4,14 @@
   "use strict";
 
   const STORAGE_KEY = "kappa-sushi-order-v1";
+  // 「よく頼む」用の過去の注文数（コード→数量）。今回の記録を消去するときに加算する
+  const HISTORY_KEY = "kappa-sushi-history-v1";
   const SCHEMA_VERSION = 1;
   const MAX_QUANTITY_PER_LINE = 99;
 
   // lines: [{ code, name, price, quantity, addedAt }]（最初に注文した順）
   let state = { version: SCHEMA_VERSION, updatedAt: null, lines: [] };
+  let history = {};
   const listeners = [];
   let storageAvailable = true;
 
@@ -24,6 +27,13 @@
 
   function load() {
     try {
+      const rawHistory = global.localStorage.getItem(HISTORY_KEY);
+      const parsedHistory = rawHistory ? JSON.parse(rawHistory) : null;
+      if (parsedHistory && parsedHistory.version === SCHEMA_VERSION && parsedHistory.counts) {
+        Object.entries(parsedHistory.counts).forEach(([code, count]) => {
+          if (Number.isInteger(count) && count > 0) history[code] = count;
+        });
+      }
       const raw = global.localStorage.getItem(STORAGE_KEY);
       if (!raw) return;
       const parsed = JSON.parse(raw);
@@ -43,6 +53,7 @@
   function save() {
     try {
       global.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      global.localStorage.setItem(HISTORY_KEY, JSON.stringify({ version: SCHEMA_VERSION, counts: history }));
       storageAvailable = true;
     } catch (error) {
       // プライベートブラウズ等で保存できなくても、画面上の記録は続ける
@@ -108,10 +119,27 @@
     return () => commit(before);
   }
 
+  // 今回の記録を消去し、「よく頼む」の履歴に移す。取り消すと履歴も元に戻る
   function clear() {
     const before = cloneLines();
+    const historyBefore = Object.assign({}, history);
+    before.forEach((line) => {
+      history[line.code] = (history[line.code] || 0) + line.quantity;
+    });
     commit([]);
-    return () => commit(before);
+    return () => {
+      history = historyBefore;
+      commit(before);
+    };
+  }
+
+  // 過去の来店分と今回の注文を合わせた品ごとの注文数（コード→数量）
+  function frequencies() {
+    const counts = Object.assign({}, history);
+    state.lines.forEach((line) => {
+      counts[line.code] = (counts[line.code] || 0) + line.quantity;
+    });
+    return counts;
   }
 
   function subscribe(listener) {
@@ -128,6 +156,7 @@
     setQuantity,
     remove,
     clear,
+    frequencies,
     subscribe,
   };
 })(window);

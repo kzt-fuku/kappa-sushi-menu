@@ -34,10 +34,27 @@
     return rankedItems.filter((item) => item.genres.includes(genre));
   }
 
+  // 検索用の正規化: 全角半角・大文字小文字をそろえ、カタカナをひらがなに、空白と波ダッシュを除く
+  function normalizeForSearch(text) {
+    return (text || "")
+      .normalize("NFKC")
+      .toLowerCase()
+      .replace(/[\u30a1-\u30f6]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0x60))
+      .replace(/[\s〜～~]/g, "");
+  }
+
+  // 品名または公式名に、正規化した検索語が含まれる品を返す（順位は全体での順位のまま）
+  function searchItems(rankedItems, normalizedQuery) {
+    if (!normalizedQuery) return rankedItems;
+    return rankedItems.filter((item) =>
+      [item.name, item.officialName].some((name) => normalizeForSearch(name).includes(normalizedQuery))
+    );
+  }
+
   function formatCheckedDate(isoDate) {
     const [year, month, day] = isoDate.split("-").map(Number);
     return `${year}年${month}月${day}日`;
   }
 
-  global.KappaMenu = { rankItems, filterByGenre, formatCheckedDate };
+  global.KappaMenu = { rankItems, filterByGenre, normalizeForSearch, searchItems, formatCheckedDate };
 })(window);

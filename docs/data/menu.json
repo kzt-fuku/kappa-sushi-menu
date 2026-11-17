@@ -15,6 +15,7 @@
   "items": [
     {
       "name": "北海道祭り5貫プレート（単品）",
+      "officialName": "ごち寿司北海道祭り５貫プレート",
       "code": "06220",
       "quantity": "5貫",
       "price": 759,
@@ -27,6 +28,7 @@
     },
     {
       "name": "鯛スープの塩ラーメン（メンマチャーシュー）",
+      "officialName": "鯛スープの塩ラーメン(メンマチャーシュー)",
       "code": "06127",
       "quantity": "1杯",
       "price": 462,
@@ -39,6 +41,7 @@
     },
     {
       "name": "コク旨醤油ラーメン（メンマチャーシュー）",
+      "officialName": "コク旨醤油ラーメン(メンマチャーシュー)",
       "code": "06129",
       "quantity": "1杯",
       "price": 462,
@@ -51,6 +54,7 @@
     },
     {
       "name": "二段仕込の醤油とり唐揚げ",
+      "officialName": "二段仕込の醤油とり唐揚げ",
       "code": "06021",
       "quantity": "1皿",
       "price": 407,
@@ -63,6 +67,7 @@
     },
     {
       "name": "えび天うどん",
+      "officialName": "えび天うどん",
       "code": "06794",
       "quantity": "1杯",
       "price": 407,
@@ -75,6 +80,7 @@
     },
     {
       "name": "きつねうどん",
+      "officialName": "きつねうどん",
       "code": "06793",
       "quantity": "1杯",
       "price": 407,
@@ -87,6 +93,7 @@
     },
     {
       "name": "フライドポテト ～ケチャップ添え～",
+      "officialName": "フライドポテト～ケチャップ添え～",
       "code": "06709",
       "quantity": "1皿",
       "price": 352,
@@ -99,6 +106,7 @@
     },
     {
       "name": "プレミアムプリン",
+      "officialName": "プレミアムプリン",
       "code": "06721",
       "quantity": "1個",
       "price": 352,
@@ -111,6 +119,7 @@
     },
     {
       "name": "フライドポテト ～トリュフマヨ添え～",
+      "officialName": "フライドポテト～トリュフマヨ添え～",
       "code": "06428",
       "quantity": "1皿",
       "price": 352,
@@ -123,6 +132,7 @@
     },
     {
       "name": "チョコレートケーキ",
+      "officialName": "チョコレートケーキ",
       "code": "06719",
       "quantity": "1個",
       "price": 352,
@@ -135,6 +145,7 @@
     },
     {
       "name": "ベイクドチーズケーキ",
+      "officialName": "ベイクドチーズケーキ",
       "code": "06718",
       "quantity": "1個",
       "price": 352,
@@ -147,6 +158,7 @@
     },
     {
       "name": "紅茶ゼリー ～ホイップ添え～",
+      "officialName": "紅茶ゼリー～ホイップ添え～",
       "code": "06524",
       "quantity": "1皿",
       "price": 352,
@@ -159,6 +171,7 @@
     },
     {
       "name": "茶碗蒸し",
+      "officialName": "茶碗蒸し",
       "code": "06711",
       "quantity": "1個",
       "price": 297,
@@ -171,6 +184,7 @@
     },
     {
       "name": "あさりの味噌汁",
+      "officialName": "あさりの味噌汁",
       "code": "06383",
       "quantity": "1杯",
       "price": 297,
@@ -183,6 +197,7 @@
     },
     {
       "name": "かつお出汁入りあんかけ茶碗蒸し",
+      "officialName": "かつお出汁入りあんかけ茶碗蒸し",
       "code": "07065",
       "quantity": "1個",
       "price": 297,
@@ -195,6 +210,7 @@
     },
     {
       "name": "牛カルビたっぷりマヨ炙り",
+      "officialName": "牛カルビたっぷりマヨ炙り",
       "code": "06080",
       "quantity": "2貫",
       "price": 253,
@@ -208,6 +224,7 @@
     },
     {
       "name": "鉄火巻",
+      "officialName": "鉄火巻",
       "code": "06321",
       "quantity": "1本",
       "price": 253,
@@ -220,6 +237,7 @@
     },
     {
       "name": "あおさの味噌汁",
+      "officialName": "あおさの味噌汁",
       "code": "06772",
       "quantity": "1杯",
       "price": 253,
@@ -232,6 +250,7 @@
     },
     {
       "name": "中とろ",
+      "officialName": "中とろ",
       "code": "06237",
       "quantity": "1貫",
       "price": 209,
@@ -244,6 +263,7 @@
     },
     {
       "name": "とろサーモン",
+      "officialName": "とろサーモン",
       "code": "06239",
       "quantity": "2貫",
       "price": 209,
@@ -256,6 +276,7 @@
     },
     {
       "name": "とろサーモン塩炙り",
+      "officialName": "とろサーモン塩炙り",
       "code": "06124",
       "quantity": "2貫",
       "price": 209,
@@ -268,6 +289,7 @@
     },
     {
       "name": "アボカドサーモン",
+      "officialName": "アボカドサーモン",
       "code": "06122",
       "quantity": "2貫",
       "price": 209,
@@ -281,6 +303,7 @@
     },
     {
       "name": "活〆真鯛",
+      "officialName": "活〆真鯛（二貫）",
       "code": "06638",
       "quantity": "2貫",
       "price": 209,
@@ -293,6 +316,7 @@
     },
     {
       "name": "たこ",
+      "officialName": "生たこ",
       "code": "06594",
       "quantity": "2貫",
       "price": 209,
@@ -305,6 +329,7 @@
     },
     {
       "name": "えんがわ",
+      "officialName": "えんがわ",
       "code": "06282",
       "quantity": "2貫",
       "price": 209,
@@ -317,6 +342,7 @@
     },
     {
       "name": "牛カルビ炙り",
+      "officialName": "牛カルビ炙り",
       "code": "06281",
       "quantity": "2貫",
       "price": 209,
@@ -329,6 +355,7 @@
     },
     {
       "name": "ねぎとろ巻",
+      "officialName": "ねぎとろ巻",
       "code": "06319",
       "quantity": "1本",
       "price": 209,
@@ -341,6 +368,7 @@
     },
     {
       "name": "つぶ貝",
+      "officialName": "つぶ貝",
       "code": "06243",
       "quantity": "2貫",
       "price": 209,
@@ -353,6 +381,7 @@
     },
     {
       "name": "赤貝",
+      "officialName": "赤貝",
       "code": "06272",
       "quantity": "2貫",
       "price": 209,
@@ -365,6 +394,7 @@
     },
     {
       "name": "えび天巻",
+      "officialName": "えび天巻",
       "code": "06720",
       "quantity": "1本",
       "price": 209,
@@ -378,6 +408,7 @@
     },
     {
       "name": "玉ねぎ天盛り",
+      "officialName": "玉ねぎ天盛り",
       "code": "06693",
       "quantity": "1皿",
       "price": 209,
@@ -390,6 +421,7 @@
     },
     {
       "name": "なす天盛り ～天つゆ付き～",
+      "officialName": "なす天盛り～天つゆ付き～",
       "code": "06786",
       "quantity": "1皿",
       "price": 209,
@@ -402,6 +434,7 @@
     },
     {
       "name": "玉ねぎと油揚げの味噌汁",
+      "officialName": "玉ねぎと油揚げの味噌汁",
       "code": "06606",
       "quantity": "1杯",
       "price": 209,
@@ -414,6 +447,7 @@
     },
     {
       "name": "しっとりクリームケーキ",
+      "officialName": "しっとりクリームケーキ",
       "code": "06433",
       "quantity": "1個",
       "price": 209,
@@ -426,6 +460,7 @@
     },
     {
       "name": "赤えび",
+      "officialName": "赤えび",
       "code": "06120",
       "quantity": "1貫",
       "price": 176,
@@ -438,6 +473,7 @@
     },
     {
       "name": "サーモンマヨ炙り",
+      "officialName": "サーモンマヨ炙り",
       "code": "06617",
       "quantity": "2貫",
       "price": 176,
@@ -451,6 +487,7 @@
     },
     {
       "name": "活〆はまち（2貫）",
+      "officialName": "活〆はまち(二貫)",
       "code": "06139",
       "quantity": "2貫",
       "price": 176,
@@ -463,6 +500,7 @@
     },
     {
       "name": "えびマヨ炙り",
+      "officialName": "えびマヨ炙り",
       "code": "06609",
       "quantity": "2貫",
       "price": 176,
@@ -476,6 +514,7 @@
     },
     {
       "name": "生えび",
+      "officialName": "生えび",
       "code": "06196",
       "quantity": "2貫",
       "price": 176,
@@ -488,6 +527,7 @@
     },
     {
       "name": "オニオンサーモンマヨ",
+      "officialName": "オニオンサーモンマヨ",
       "code": "06039",
       "quantity": "2貫",
       "price": 176,
@@ -501,6 +541,7 @@
     },
     {
       "name": "えび天にぎり",
+      "officialName": "えび天にぎり",
       "code": "06669",
       "quantity": "2貫",
       "price": 176,
@@ -513,6 +554,7 @@
     },
     {
       "name": "煮穴子",
+      "officialName": "煮穴子",
       "code": "06024",
       "quantity": "2貫",
       "price": 176,
@@ -525,6 +567,7 @@
     },
     {
       "name": "国産炭焼きかつおたたき（2貫）",
+      "officialName": "国産炭焼きかつおたたき(二貫)",
       "code": "06560",
       "quantity": "2貫",
       "price": 176,
@@ -537,6 +580,7 @@
     },
     {
       "name": "サーモンマヨペッパー炙り",
+      "officialName": "サーモンマヨペッパー炙り",
       "code": "06618",
       "quantity": "2貫",
       "price": 176,
@@ -550,6 +594,7 @@
     },
     {
       "name": "えびマヨペッパー炙り",
+      "officialName": "えびマヨペッパー炙り",
       "code": "06610",
       "quantity": "2貫",
       "price": 176,
@@ -563,6 +608,7 @@
     },
     {
       "name": "オニオンえびマヨ",
+      "officialName": "オニオンえびマヨ",
       "code": "06152",
       "quantity": "2貫",
       "price": 176,
@@ -576,6 +622,7 @@
     },
     {
       "name": "〆いわし",
+      "officialName": "〆いわし",
       "code": "06475",
       "quantity": "2貫",
       "price": 176,
@@ -588,6 +635,7 @@
     },
     {
       "name": "あかいかゲソ（大葉）",
+      "officialName": "あかいかゲソ（大葉）",
       "code": "07329",
       "quantity": "2貫",
       "price": 176,
@@ -600,6 +648,7 @@
     },
     {
       "name": "あかいかゲソマヨ",
+      "officialName": "あかいかゲソマヨ",
       "code": "06156",
       "quantity": "2貫",
       "price": 176,
@@ -613,6 +662,7 @@
     },
     {
       "name": "浜焼き風 えび",
+      "officialName": "浜焼き風 えび",
       "code": "06615",
       "quantity": "2貫",
       "price": 176,
@@ -626,6 +676,7 @@
     },
     {
       "name": "えび天にぎりマヨ",
+      "officialName": "えび天にぎりマヨ",
       "code": "06667",
       "quantity": "2貫",
       "price": 176,
@@ -639,6 +690,7 @@
     },
     {
       "name": "さくさくイカ天にぎり",
+      "officialName": "さくさくイカ天にぎり",
       "code": "06668",
       "quantity": "2貫",
       "price": 176,
@@ -651,6 +703,7 @@
     },
     {
       "name": "さくさくイカ天にぎりマヨ",
+      "officialName": "さくさくイカ天にぎりマヨ",
       "code": "06603",
       "quantity": "2貫",
       "price": 176,
@@ -664,6 +717,7 @@
     },
     {
       "name": "まいたけ天にぎり",
+      "officialName": "まいたけ天にぎり",
       "code": "06064",
       "quantity": "2貫",
       "price": 176,
@@ -676,6 +730,7 @@
     },
     {
       "name": "合鴨ロースオニオンマヨ",
+      "officialName": "合鴨ロース オニオンマヨ",
       "code": "06339",
       "quantity": "2貫",
       "price": 176,
@@ -689,6 +744,7 @@
     },
     {
       "name": "かにみそ",
+      "officialName": "かにみそ",
       "code": "06445",
       "quantity": "2貫",
       "price": 176,
@@ -701,6 +757,7 @@
     },
     {
       "name": "卵黄納豆軍艦",
+      "officialName": "卵黄納豆軍艦",
       "code": "06842",
       "quantity": "2貫",
       "price": 176,
@@ -713,6 +770,7 @@
     },
     {
       "name": "卵黄とろろ軍艦",
+      "officialName": "卵黄とろろ軍艦",
       "code": "07188",
       "quantity": "2貫",
       "price": 176,
@@ -725,6 +783,7 @@
     },
     {
       "name": "ししゃもっこ軍艦",
+      "officialName": "ししゃもっこ軍艦",
       "code": "06128",
       "quantity": "2貫",
       "price": 176,
@@ -737,6 +796,7 @@
     },
     {
       "name": "干ぴょう巻",
+      "officialName": "干ぴょう巻",
       "code": "06359",
       "quantity": "1本",
       "price": 176,
@@ -749,6 +809,7 @@
     },
     {
       "name": "かにカマきゅうりコーン小鉢",
+      "officialName": "かにカマきゅうりコーン小鉢",
       "code": "06782",
       "quantity": "1皿",
       "price": 176,
@@ -761,6 +822,7 @@
     },
     {
       "name": "まぐろ",
+      "officialName": "まぐろ",
       "code": "06060",
       "quantity": "2貫",
       "price": 121,
@@ -773,6 +835,7 @@
     },
     {
       "name": "まぐたく軍艦",
+      "officialName": "まぐたく軍艦",
       "code": "08711",
       "quantity": "2貫",
       "price": 121,
@@ -785,6 +848,7 @@
     },
     {
       "name": "てりやきハンバーグ",
+      "officialName": "てりやきハンバーグ",
       "code": "09262",
       "quantity": "2貫",
       "price": 121,
@@ -797,6 +861,7 @@
     },
     {
       "name": "合鴨ロース",
+      "officialName": "合鴨ロース",
       "code": "06320",
       "quantity": "2貫",
       "price": 121,
@@ -809,6 +874,7 @@
     },
     {
       "name": "感動コーンかっぱ軍艦",
+      "officialName": "感動コーンかっぱ軍艦",
       "code": "06755",
       "quantity": "2貫",
       "price": 121,
@@ -821,6 +887,7 @@
     },
     {
       "name": "かにカマサラダかっぱ軍艦",
+      "officialName": "かにカマサラダかっぱ軍艦",
       "code": "06255",
       "quantity": "2貫",
       "price": 121,
@@ -833,6 +900,7 @@
     },
     {
       "name": "てりやきハンバーグマヨ",
+      "officialName": "てりやきハンバーグマヨ",
       "code": "09263",
       "quantity": "2貫",
       "price": 121,
@@ -845,6 +913,7 @@
     },
     {
       "name": "なす揚げびたし",
+      "officialName": "なすの揚げびたし",
       "code": "06808",
       "quantity": "2貫",
       "price": 121,
@@ -857,6 +926,7 @@
     },
     {
       "name": "さっぱりシューアイス",
+      "officialName": "さっぱりシューアイス",
       "code": "06399",
       "quantity": "1皿",
       "price": 121,
@@ -869,6 +939,7 @@
     },
     {
       "name": "とろ〆さば",
+      "officialName": "とろ〆さば",
       "code": "06307",
       "quantity": "1貫",
       "price": 110,
@@ -881,6 +952,7 @@
     },
     {
       "name": "サーモン",
+      "officialName": "サーモン",
       "code": "06004",
       "quantity": "2貫",
       "price": 110,
@@ -893,6 +965,7 @@
     },
     {
       "name": "えび",
+      "officialName": "えび",
       "code": "06010",
       "quantity": "2貫",
       "price": 110,
@@ -905,6 +978,7 @@
     },
     {
       "name": "ねぎとろにぎり",
+      "officialName": "ねぎとろにぎり",
       "code": "06262",
       "quantity": "2貫",
       "price": 110,
@@ -917,6 +991,7 @@
     },
     {
       "name": "びん長まぐろ",
+      "officialName": "びん長まぐろ",
       "code": "06091",
       "quantity": "2貫",
       "price": 110,
@@ -929,6 +1004,7 @@
     },
     {
       "name": "ねぎとろ軍艦",
+      "officialName": "ねぎとろ軍艦",
       "code": "06552",
       "quantity": "2貫",
       "price": 110,
@@ -941,6 +1017,7 @@
     },
     {
       "name": "サラダ軍艦",
+      "officialName": "サラダ軍艦",
       "code": "06554",
       "quantity": "2貫",
       "price": 110,
@@ -953,6 +1030,7 @@
     },
     {
       "name": "いか",
+      "officialName": "天然むらさきいか",
       "code": "06015",
       "quantity": "2貫",
       "price": 110,
@@ -965,6 +1043,7 @@
     },
     {
       "name": "玉子",
+      "officialName": "玉子",
       "code": "06035",
       "quantity": "2貫",
       "price": 110,
@@ -977,6 +1056,7 @@
     },
     {
       "name": "感動コーン",
+      "officialName": "感動コーン",
       "code": "08552",
       "quantity": "2貫",
       "price": 110,
@@ -989,6 +1069,7 @@
     },
     {
       "name": "いなり",
+      "officialName": "いなり",
       "code": "06740",
       "quantity": "2貫",
       "price": 110,
@@ -1001,6 +1082,7 @@
     },
     {
       "name": "かっぱ巻",
+      "officialName": "かっぱ巻",
       "code": "06686",
       "quantity": "1本",
       "price": 110,
@@ -1013,6 +1095,7 @@
     },
     {
       "name": "なっとう軍艦",
+      "officialName": "なっとう軍艦",
       "code": "06555",
       "quantity": "2貫",
       "price": 110,
@@ -1025,6 +1108,7 @@
     },
     {
       "name": "なっとう巻",
+      "officialName": "なっとう巻",
       "code": "06684",
       "quantity": "1本",
       "price": 110,
@@ -1037,6 +1121,7 @@
     },
     {
       "name": "たらこマヨ軍艦",
+      "officialName": "たらこマヨ軍艦",
       "code": "09465",
       "quantity": "2貫",
       "price": 110,
@@ -1049,6 +1134,7 @@
     },
     {
       "name": "かにカマサラダ軍艦",
+      "officialName": "かにカマサラダ軍艦",
       "code": "06192",
       "quantity": "2貫",
       "price": 110,
@@ -1061,6 +1147,7 @@
     },
     {
       "name": "たらこ軍艦",
+      "officialName": "たらこ軍艦",
       "code": "08637",
       "quantity": "2貫",
       "price": 110,
@@ -1073,6 +1160,7 @@
     },
     {
       "name": "オクラいかめかぶ軍艦",
+      "officialName": "オクラいかめかぶ軍艦",
       "code": "06131",
       "quantity": "2貫",
       "price": 110,
@@ -1085,6 +1173,7 @@
     },
     {
       "name": "オクラいかめかぶ納豆軍艦",
+      "officialName": "オクラいかめかぶ納豆軍艦",
       "code": "06138",
       "quantity": "2貫",
       "price": 110,
@@ -1097,6 +1186,7 @@
     },
     {
       "name": "かっぱのシャリドーナツ きな粉（2個）",
+      "officialName": "かっぱのシャリドーナツきな粉（２個）",
       "code": "06183",
       "quantity": "2個",
       "price": 110,
@@ -1109,6 +1199,7 @@
     },
     {
       "name": "かっぱのシャリドーナツ キャラメルシナモン（2個）",
+      "officialName": "かっぱのシャリドーナツキャラメルシナモン（２個）",
       "code": "06543",
       "quantity": "2個",
       "price": 110,
@@ -1121,6 +1212,7 @@
     },
     {
       "name": "京わらび餅",
+      "officialName": "京わらび餅",
       "code": "06379",
       "quantity": "1皿",
       "price": 110,
@@ -1133,6 +1225,7 @@
     },
     {
       "name": "甘ガリ天盛り",
+      "officialName": "甘ガリ天盛り",
       "code": "06335",
       "quantity": "1皿",
       "price": 110,
@@ -1145,6 +1238,7 @@
     },
     {
       "name": "本日のお楽しみ寿司5貫セット",
+      "officialName": null,
       "code": null,
       "quantity": null,
       "price": null,
@@ -1155,6 +1249,7 @@
     },
     {
       "name": "甘ガリ",
+      "officialName": null,
       "code": null,
       "quantity": null,
       "price": null,
@@ -1165,6 +1260,7 @@
     },
     {
       "name": "天つゆ",
+      "officialName": null,
       "code": null,
       "quantity": null,
       "price": null,

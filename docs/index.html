@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#b3122a">
+  <!-- バージョンを上げたら、下の css/js の ?v= も同じ値にする（tools/check-layout.mjs で検証） -->
+  <meta name="app-version" content="1.3.0">
+  <meta name="app-updated" content="2026-11-17">
   <title>かっぱ寿司 通常価格一覧</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1.3.0">
 </head>
 <body>
   <header class="page-header">
@@ -25,7 +28,10 @@
     </div>
   </header>
 
-  <nav class="genre-bar" aria-label="ジャンル">
+  <nav class="genre-bar" aria-label="検索とジャンル">
+    <div class="search-box">
+      <input type="search" id="search" class="search-input" placeholder="品名で検索（ひらがな・カタカナ可）" enterkeyhint="search" autocomplete="off" aria-label="品名で検索">
+    </div>
     <div class="genre-list" id="genre-list" role="group"></div>
   </nav>
 
@@ -35,10 +41,12 @@
       <span>順位</span><span>品名</span><span class="price-col">税込価格</span>
     </div>
     <ol class="menu-list" id="menu-list"></ol>
+    <p class="list-empty" id="list-empty" hidden></p>
   </main>
 
   <footer class="page-footer">
     <p>非公式のまとめです。最新の価格・販売状況は店舗と公式メニューでご確認ください。</p>
+    <p class="version">バージョン <span class="app-version">—</span></p>
   </footer>
 
   <!-- 画面下に常に表示する合計 -->
@@ -103,11 +111,13 @@
       <p class="sheet-hint">店内飲食・税込の通常価格で計算した目安です。店舗によって価格が異なる場合があります。</p>
       <p class="sheet-hint" id="storage-warning" hidden>この端末では記録を保存できません（プライベートブラウズなど）。ページを閉じると記録が消えます。</p>
       <button type="button" class="clear-button" id="order-clear">すべて消去</button>
+      <p class="sheet-hint">消去した注文は「よく頼む」の集計に残ります。</p>
+      <p class="sheet-hint version">バージョン <span class="app-version">—</span></p>
     </div>
   </dialog>
 
-  <script src="js/menu-core.js"></script>
-  <script src="js/order-store.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/menu-core.js?v=1.3.0"></script>
+  <script src="js/order-store.js?v=1.3.0"></script>
+  <script src="js/app.js?v=1.3.0"></script>
 </body>
 </html>

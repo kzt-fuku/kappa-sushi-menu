@@ -66,6 +66,9 @@ async function checkOrdering(page, data, width, problems) {
 
   await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "全て").click());
   await expectTotal(0, 0, "初期");
+  await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "よく頼む").click());
+  if (await page.$eval("#list-empty", (el) => el.hidden)) fail("よく頼む: 記録がないときの案内が出ない");
+  await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "全て").click());
 
   // 価格なしの品は押せない
   const unpricedButtons = await page.$$eval("button.menu-row", (rows) => rows.filter((r) => r.textContent.includes("—")).length);
@@ -127,6 +130,8 @@ async function checkOrdering(page, data, width, problems) {
   await click("#toast-undo");
   await expectTotal(expected, 5, "削除の取り消し");
   await page.$eval("#order-sheet [data-close]", (el) => el.click());
+  const frequent1 = await frequentNames(page);
+  if (frequent1 !== "中とろ:これまでに4皿,北海道祭り5貫プレート（単品）:これまでに1皿") fail(`よく頼む（今回分）: ${frequent1}`);
 
   // 再読み込みしても記録が残る
   await page.reload({ waitUntil: "networkidle0" });
@@ -162,6 +167,72 @@ async function checkOrdering(page, data, width, problems) {
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-stale.png`) });
   await click("#stale-reset");
   await expectTotal(0, 0, "新しく始める");
+
+  // 消去した注文も「よく頼む」に残る（中とろ4・まぐろ2・プレート1）
+  const frequent2 = await frequentNames(page);
+  if (frequent2 !== "中とろ:これまでに4皿,まぐろ:これまでに2皿,北海道祭り5貫プレート（単品）:これまでに1皿") fail(`よく頼む（履歴）: ${frequent2}`);
+  await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "よく頼む").click());
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-frequent.png`) });
+}
+
+// テスト側でも同じ規則で正規化し、検索結果を独立に計算する
+function normalize(text) {
+  return (text || "")
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/[\u30a1-\u30f6]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0x60))
+    .replace(/[\s〜～~]/g, "");
+}
+
+async function checkSearchAndVersion(page, data, width, problems) {
+  const label = `${width}px 検索`;
+  const fail = (message) => problems.push(`${label}: ${message}`);
+  const shownNames = () => page.$$eval(".menu-row .name", (els) => els.map((el) => el.textContent));
+  const typeQuery = async (query) => {
+    await page.$eval("#search", (el) => { el.value = ""; });
+    await page.type("#search", query);
+  };
+
+  // ジャンルを選んだ状態から検索すると「全て」から探す
+  await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "デザート").click());
+  for (const query of ["マグロ", "生たこ", "ｻｰﾓﾝ", "イカ天"]) {
+    await typeQuery(query);
+    const q = normalize(query);
+    const expected = data.items.filter((i) => [i.name, i.officialName].some((n) => normalize(n).includes(q))).map((i) => i.name);
+    const shown = await shownNames();
+    if (!expected.length || shown.join("\n") !== expected.join("\n")) fail(`「${query}」: 表示 ${shown.join("、")} / 期待 ${expected.join("、")}`);
+  }
+  const pressed = await page.$eval('.genre-button[aria-pressed="true"]', (el) => el.textContent);
+  if (pressed !== "全て") fail(`検索中のジャンル表示が「全て」ではない (${pressed})`);
+  if ((await page.evaluate(() => document.documentElement.scrollWidth)) > width) fail("検索欄で横スクロールが出る");
+  await typeQuery("マグロ");
+  await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-search.png`) });
+
+  await typeQuery("ぴざ");
+  const empty = await page.$eval("#list-empty", (el) => !el.hidden && el.textContent.length > 0);
+  if (!empty || (await shownNames()).length) fail("該当なしの案内が出ない");
+
+  // ジャンルを選ぶと検索は解除される
+  await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "全て").click());
+  if ((await page.$eval("#search", (el) => el.value)) !== "" || (await shownNames()).length !== data.items.length) fail("ジャンル選択で検索が解除されない");
+
+  // バージョン表示と、読み込むファイルの ?v= が一致している
+  const version = await page.evaluate(() => {
+    const value = document.querySelector('meta[name="app-version"]').content;
+    const assets = Array.from(document.querySelectorAll('link[rel="stylesheet"], script[src]'), (el) => el.getAttribute("href") || el.getAttribute("src"));
+    return { value, assets, labels: Array.from(document.querySelectorAll(".app-version"), (el) => el.textContent) };
+  });
+  const stale = version.assets.filter((a) => !a.endsWith(`?v=${version.value}`));
+  if (stale.length) problems.push(`バージョン ${version.value} と読み込み URL が不一致: ${stale.join(", ")}`);
+  if (!version.labels.length || version.labels.some((t) => !t.startsWith(`v${version.value}`))) problems.push(`バージョン表示: ${version.labels.join(", ")}`);
+  return version.value;
+}
+
+async function frequentNames(page) {
+  await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "よく頼む").click());
+  const rows = await page.$$eval(".menu-row", (els) => els.map((el) => `${el.querySelector(".name").textContent}:${el.querySelector(".frequency")?.textContent || ""}`));
+  await page.evaluate(() => Array.from(document.querySelectorAll(".genre-button")).find((b) => b.textContent === "全て").click());
+  return rows.join(",");
 }
 
 function priceValue(label) {
@@ -241,8 +312,9 @@ async function main() {
           await page.screenshot({ path: path.join(SCREENSHOT_DIR, `w${width}-genre.png`) });
         }
       }
+      const version = await checkSearchAndVersion(page, data, width, problems);
       await checkOrdering(page, data, width, problems);
-      console.log(`${width}px: 全て ${all.items.length} 品、ジャンル ${data.genres.length} 種、注文の記録を確認`);
+      console.log(`${width}px: 全て ${all.items.length} 品、ジャンル ${data.genres.length} 種、検索、注文の記録、よく頼む、バージョン v${version} を確認`);
       await context.close();
     }
 

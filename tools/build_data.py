@@ -12,6 +12,7 @@
 
 import argparse
 import json
+import re
 import sys
 import urllib.request
 from pathlib import Path
@@ -305,6 +306,8 @@ def build(categories, products):
             note = f"{mapping}。{note}" if note else mapping
         items.append({
             "name": name,
+            # 検索用。画像と公式で名前が違う品は既存 PDF の対応、それ以外は公式の品名
+            "officialName": official_name or re.sub(r"<br\s*/?>", "", product["name"]),
             "code": code,
             "quantity": quantity,
             "price": price,
@@ -323,6 +326,7 @@ def build(categories, products):
     for name, reason, note in UNPRICED_ITEMS:
         items.append({
             "name": name,
+            "officialName": None,
             "code": None,
             "quantity": None,
             "price": None,
